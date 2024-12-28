@@ -15,40 +15,46 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StudentService {
     private final StudentRepo studentRepo;
-//    private final MapperUtil mapperUtil;
+    private final MapperUtil mapperUtil;
 
-//    public CreateStudentDTO createStudent(Student student) {
-//        return mapperUtil.getModelMapper()
-//                .map(this.studentRepo
-//                        .save(mapperUtil.getModelMapper()
-//                                .map(student, Student.class)), CreateStudentDTO.class);
-//
-//    }
+    public CreateStudentDTO createStudentDTO(Student student) {
+        return mapperUtil.getModelMapper()
+                .map(this.studentRepo
+                        .save(mapperUtil.getModelMapper()
+                                .map(student, Student.class)), CreateStudentDTO.class);
 
-//    public Student createStudent(Student student) {
-//        return studentRepo.save(student);
-//    }
-//    public StudentDTO getStudent(long id) {
-//        return this.mapperUtil.getModelMapper()
-//            .map(this.studentRepo.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Student with id=" + id + " not found!")),
-//                    StudentDTO.class);
-//    }
-
-    public Student getStudent(long id) {
-        return studentRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Student with id=" + id + " not found!"));
     }
 
-    public List<Student> getStudentByName(String name) {
-        return studentRepo.findByName(name);
+    public Student createStudent(Student student) {
+        return studentRepo.save(student);
     }
 
-    public Student getStudentByFNumber(String fNumber) {
-        return studentRepo.findByfNumber(fNumber);
+    public StudentDTO getStudent(long id) {
+        return this.mapperUtil.getModelMapper()
+            .map(this.studentRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Student with id=" + id + " not found!")),
+                    StudentDTO.class);
     }
-    public List<Student> getAllStudents() {
-        return studentRepo.findAll();
+
+//    public Student getStudent(long id) {
+//        return studentRepo.findById(id)
+//                .orElseThrow(() -> new RuntimeException("Student with id=" + id + " not found!"));
+//    }
+
+    public List<StudentDTO> getStudentByName(String name) {
+        return this.mapperUtil
+                .mapList(
+                        this.studentRepo.findByName(name), StudentDTO.class);
+    }
+
+    public StudentDTO getStudentByFNumber(String fNumber) {
+        return this.mapperUtil.getModelMapper()
+                .map(this.studentRepo.findByfNumber(fNumber), StudentDTO.class);
+    }
+    public List<StudentDTO> getAllStudents() {
+        return this.mapperUtil
+                .mapList(
+                        this.studentRepo.findAll(), StudentDTO.class);
     }
 
 }
