@@ -1,5 +1,6 @@
 package com.project.diplomation.web.api;
 
+import com.project.diplomation.data.models.dto.UniversityTutorDTO;
 import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.UniversityTutor;
 import com.project.diplomation.data.models.enums.PositionType;
@@ -20,19 +21,19 @@ public class UniversityTutorController {
     private final UniversityTutorService universityTutorService;
 
     @GetMapping("/{id}")
-    public UniversityTutor getUniTutor(@PathVariable long id){
+    public UniversityTutorDTO getUniTutor(@PathVariable long id){
         return this.universityTutorService.getUniversityTutor(id);
     }
     @GetMapping("/by-name/{name}")
-    public List<UniversityTutor> getUniTutorByName(@PathVariable String name) {
+    public List<UniversityTutorDTO> getUniTutorByName(@PathVariable String name) {
         return this.universityTutorService.getUniversityTutorByName(name);
     }
     @GetMapping("/by-position_type/{positionType}")
-    public List<UniversityTutor> getUniTutorsByPositionType(@PathVariable PositionType positionType) {
+    public List<UniversityTutorDTO> getUniTutorsByPositionType(@PathVariable PositionType positionType) {
         return this.universityTutorService.getUniversityTutorByPositionType(positionType);
     }
     @GetMapping("/all")
-    public List<UniversityTutor> getAllUniversityTutors() {
+    public List<UniversityTutorDTO> getAllUniversityTutors() {
         return this.universityTutorService.getAllUniversityTutors();
     }
 }

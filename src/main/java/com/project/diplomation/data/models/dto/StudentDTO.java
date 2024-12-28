@@ -12,7 +12,7 @@ import jakarta.validation.constraints.Size;
 import java.util.HashSet;
 
 /**
- * Represents the data of a student.
+ * Represents a placeholder for the data of a student.
  * Has an id, name and faculty number.
  */
 @Getter
