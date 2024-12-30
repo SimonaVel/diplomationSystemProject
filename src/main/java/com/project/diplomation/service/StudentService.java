@@ -25,10 +25,6 @@ public class StudentService {
 
     }
 
-    public Student createStudent(Student student) {
-        return studentRepo.save(student);
-    }
-
     public StudentDTO getStudent(long id) {
         return this.mapperUtil.getModelMapper()
             .map(this.studentRepo.findById(id)

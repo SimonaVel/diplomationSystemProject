@@ -29,11 +29,6 @@ public class StudentController {
     public CreateStudentDTO createStudent(@RequestBody CreateStudentDTO student) {
         return this.studentService.createStudentDTO(mapperUtil.getModelMapper().map(student, Student.class));
     }
-//
-//    @PostMapping
-//    public Student createStudent(@RequestBody Student student) {
-//        return this.studentService.createStudent(student);
-//    }
 
     @GetMapping("/{id}")
     public StudentDTO getStudent(@PathVariable long id){

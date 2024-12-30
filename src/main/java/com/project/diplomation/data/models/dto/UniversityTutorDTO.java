@@ -25,8 +25,4 @@ public class UniversityTutorDTO {
     private String name;
     private PositionType positionType;
 
-//    @OneToMany(mappedBy = "reviewer")
-//    private HashSet<Recension> recensions;
-//    @OneToMany
-//    private HashSet<Application> applications;
 }

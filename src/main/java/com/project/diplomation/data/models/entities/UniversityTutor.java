@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * Represents a university tutor entity.
@@ -23,8 +24,8 @@ public class UniversityTutor extends BaseEntity {
     @Column(name = "position_type")
     private PositionType positionType;
 
-    @OneToMany(mappedBy = "reviewer")
-    private HashSet<Recension> recensions;
-    @OneToMany
-    private HashSet<Application> applications;
+    @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Recension> recensions;
+    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Application> applications;
 }
