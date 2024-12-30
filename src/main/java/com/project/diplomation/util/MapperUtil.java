@@ -2,12 +2,15 @@ package com.project.diplomation.util;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+// IMPORTANT!
+@Configuration
 public class MapperUtil {
 
     @Bean

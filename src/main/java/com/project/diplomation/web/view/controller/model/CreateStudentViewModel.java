@@ -18,13 +18,13 @@ import java.util.HashSet;
 @NoArgsConstructor
 @ToString
 public class CreateStudentViewModel {
-    private long id;
+//    private long id;
     @NotBlank
     private String name;
     @Pattern(regexp = "[0-9]{5,6}", message = "Faculty numbers should consist of 5 or 6 consecutive numbers!")
     private String fNumber;
 
-    @OneToMany(mappedBy = "student")
-    private HashSet<Application> applications;
+//    @OneToMany(mappedBy = "student")
+//    private HashSet<Application> applications;
 }
 

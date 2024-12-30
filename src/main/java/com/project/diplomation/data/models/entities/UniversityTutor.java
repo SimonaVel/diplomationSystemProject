@@ -22,9 +22,9 @@ public class UniversityTutor extends BaseEntity {
     private String name;
     @Column(name = "position_type")
     private PositionType positionType;
-//
-//    @OneToMany(mappedBy = "reviewer")
-//    private HashSet<Recension> recensions;
-//    @OneToMany
-//    private HashSet<Application> applications;
+
+    @OneToMany(mappedBy = "reviewer")
+    private HashSet<Recension> recensions;
+    @OneToMany
+    private HashSet<Application> applications;
 }

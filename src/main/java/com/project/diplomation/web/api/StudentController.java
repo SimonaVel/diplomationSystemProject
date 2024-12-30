@@ -17,19 +17,18 @@ import java.util.List;
 @RequestMapping("/students")
 public class StudentController {
     private final StudentService studentService;
-    private MapperUtil mapperUtil;
+    private final MapperUtil mapperUtil;
 
-    @PostMapping
-    public CreateStudentViewModel createStudent(@RequestBody CreateStudentViewModel student) {
-        return mapperUtil.getModelMapper().map(this.studentService
-                        // TODO (Type) is questionable
-                .createStudent(mapperUtil.getModelMapper().map(student, (Type) CreateStudentDTO.class)), CreateStudentViewModel.class);
-    }
-
-//    @PostMapping
-//    public CreateStudentDTO createStudent(@RequestBody CreateStudentDTO student) {
-//        return this.studentService.createStudentDTO(mapperUtil.getModelMapper().map(student, Student.class));
+//    @PostMapping("/create")
+//    public CreateStudentViewModel createStudent(@RequestBody CreateStudentViewModel student) {
+//        return mapperUtil.getModelMapper().map(this.studentService
+//                .createStudent(mapperUtil.getModelMapper().map(student, CreateStudentDTO.class)), CreateStudentViewModel.class);
 //    }
+
+    @PostMapping("/create")
+    public CreateStudentDTO createStudent(@RequestBody CreateStudentDTO student) {
+        return this.studentService.createStudentDTO(mapperUtil.getModelMapper().map(student, Student.class));
+    }
 //
 //    @PostMapping
 //    public Student createStudent(@RequestBody Student student) {
