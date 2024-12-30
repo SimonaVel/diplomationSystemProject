@@ -26,8 +26,8 @@ public class StudentController {
 //    }
 
     @PostMapping("/create")
-    public CreateStudentDTO createStudent(@RequestBody CreateStudentDTO student) {
-        return this.studentService.createStudentDTO(mapperUtil.getModelMapper().map(student, Student.class));
+    public CreateStudentDTO createStudent(@RequestBody CreateStudentDTO studentDTO) {
+        return this.studentService.createStudentDTO(mapperUtil.getModelMapper().map(studentDTO, Student.class));
     }
 
     @GetMapping("/{id}")

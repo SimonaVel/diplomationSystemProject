@@ -1,5 +1,7 @@
 package com.project.diplomation.service;
 
+import com.project.diplomation.data.models.dto.CreateStudentDTO;
+import com.project.diplomation.data.models.dto.CreateUniversityTutorDTO;
 import com.project.diplomation.data.models.dto.UniversityTutorDTO;
 import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.UniversityTutor;
@@ -17,6 +19,14 @@ import java.util.List;
 public class UniversityTutorService {
     private final UniversityTutorRepo universityTutorRepo;
     private final MapperUtil mapperUtil;
+
+    public CreateUniversityTutorDTO createUniversityTutorDTO(UniversityTutor universityTutor) {
+        return mapperUtil.getModelMapper()
+                .map(this.universityTutorRepo
+                        .save(mapperUtil.getModelMapper()
+                                .map(universityTutor, UniversityTutor.class)), CreateUniversityTutorDTO.class);
+
+    }
     public UniversityTutorDTO getUniversityTutor(long id) {
         return this.mapperUtil.getModelMapper()
                 .map(this.universityTutorRepo.findById(id)
