@@ -1,4 +1,4 @@
-package com.project.diplomation.web.view.controller.model;
+package com.project.diplomation.web.view.model;
 
 import com.project.diplomation.data.models.entities.Application;
 import jakarta.persistence.OneToMany;

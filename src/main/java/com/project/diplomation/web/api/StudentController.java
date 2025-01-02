@@ -5,11 +5,9 @@ import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.StudentDTO;
 import com.project.diplomation.service.StudentService;
 import com.project.diplomation.util.MapperUtil;
-import com.project.diplomation.web.view.controller.model.CreateStudentViewModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 @RestController
