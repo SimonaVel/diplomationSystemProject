@@ -1,19 +1,14 @@
 package com.project.diplomation.web.view.controller;
 
 import com.project.diplomation.data.models.entities.Student;
-import com.project.diplomation.data.models.entities.StudentDTO;
 import com.project.diplomation.service.StudentService;
 import com.project.diplomation.util.MapperUtil;
-import com.project.diplomation.web.api.StudentController;
 import com.project.diplomation.web.view.model.StudentViewModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -29,6 +24,22 @@ public class StudentViewController {
                 .mapList(this.studentService.getAllStudents(), StudentViewModel.class);
         model.addAttribute("students", students);
         // returns the name of the template page(view) to be rendered
-        return "students";
+        return "students/students.html";
+    }
+    @GetMapping("/delete/{id}")
+    public String deleteStudent(@PathVariable long id) {
+        this.studentService.deleteStudent(id);
+        return "redirect:/students";
+    }
+    @GetMapping("/edit/{id}")
+    public String showEditStudentForm(Model model, @PathVariable Long id) {
+        model.addAttribute("student", this.studentService.getStudent(id));
+        return "/students/edit";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateStudent(@PathVariable long id, Student student) {
+        this.studentService.updateStudent(student, id);
+        return "redirect:/students";
     }
 }
