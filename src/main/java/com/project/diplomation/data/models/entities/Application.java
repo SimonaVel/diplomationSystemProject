@@ -2,10 +2,8 @@ package com.project.diplomation.data.models.entities;
 
 
 import com.project.diplomation.data.models.enums.ApplicationStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,5 +31,8 @@ public class Application extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "uni_tutor_id", nullable = false)
     private UniversityTutor tutor;
+    @NotNull
+    @OneToOne(mappedBy = "application")
+    private Thesis thesis;
     public Application() {}
 }

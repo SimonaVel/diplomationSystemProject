@@ -25,6 +25,9 @@ public class Thesis extends BaseEntity {
     @Column(name = "date_of_submission")
     private LocalDate dateOfSubmission;
 
+    @OneToOne
+    private Application application;
+
     @OneToOne(mappedBy = "thesis")
     private Defense defense;
 
