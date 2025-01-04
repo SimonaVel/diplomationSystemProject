@@ -52,5 +52,24 @@ public class StudentService {
                 .mapList(
                         this.studentRepo.findAll(), StudentDTO.class);
     }
+//    public void updateStudent(Student student, long id) {
+//        Student studentToUpdate = this.studentRepo.findById(id)
+//                .orElseThrow(() -> new RuntimeException("Student with id=" + id + " not found!"));
+//        studentToUpdate.setName(student.getName());
+//        studentToUpdate.setFNumber(student.getFNumber());
+//        this.studentRepo.save(studentToUpdate);
+//    }
+    public Student updateStudent(Student student, long id) {
+        return this.studentRepo.findById(id)
+            .map(student1 -> {
+                student1.setName(student.getName());
+                return this.studentRepo.save(student1);
+            }).orElseGet(() ->
+                    this.studentRepo.save(student)
+            );
+}
 
+    public void deleteStudent(long id) {
+        this.studentRepo.deleteById(id);
+    }
 }

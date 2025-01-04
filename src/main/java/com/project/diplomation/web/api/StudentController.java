@@ -17,12 +17,6 @@ public class StudentController {
     private final StudentService studentService;
     private final MapperUtil mapperUtil;
 
-//    @PostMapping("/create")
-//    public CreateStudentViewModel createStudent(@RequestBody CreateStudentViewModel student) {
-//        return mapperUtil.getModelMapper().map(this.studentService
-//                .createStudent(mapperUtil.getModelMapper().map(student, CreateStudentDTO.class)), CreateStudentViewModel.class);
-//    }
-
     @PostMapping("/create")
     public CreateStudentDTO createStudent(@RequestBody CreateStudentDTO studentDTO) {
         return this.studentService.createStudentDTO(mapperUtil.getModelMapper().map(studentDTO, Student.class));
@@ -44,5 +38,15 @@ public class StudentController {
     @GetMapping("/all")
     public List<StudentDTO> getAllStudents() {
         return this.studentService.getAllStudents();
+    }
+
+    @PutMapping("/update/{id}")
+    public void updateStudent(@PathVariable long id, @RequestBody Student student) {
+        this.studentService.updateStudent(student, id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteStudent(@PathVariable long id) {
+        this.studentService.deleteStudent(id);
     }
 }
