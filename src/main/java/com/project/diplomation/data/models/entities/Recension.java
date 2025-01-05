@@ -17,18 +17,18 @@ import java.time.LocalDate;
 public class Recension extends BaseEntity {
     @Column(name = "date_of_submission")
     private LocalDate dateOfSubmission;
-    @Column(name = "text")
+    @Column(name = "text", columnDefinition = "TEXT")
     private String text;
-    @Column(name = "conclusion")
+    @Column(name = "conclusion", columnDefinition = "TEXT")
     private String conclusion;
-    @Column(name = "is_passed")
-    private boolean isPassed;
     @ManyToOne
-    @JoinColumn(name = "reviewer_id", nullable = false)
+    @JoinColumn(name = "reviewer_id", nullable = false, columnDefinition = "BIGINT")
     private UniversityTutor reviewer;
     @OneToOne
     @NotNull
-    @JoinColumn(name = "thesis_id", nullable = false)
+    @JoinColumn(name = "thesis_id", nullable = false, columnDefinition = "BIGINT")
     private Thesis thesis;
+    @Column(name = "is_passed")
+    private boolean isPassed;
     public Recension() {}
 }

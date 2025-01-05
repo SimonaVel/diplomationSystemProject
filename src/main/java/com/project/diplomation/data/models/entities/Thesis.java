@@ -1,13 +1,11 @@
 package com.project.diplomation.data.models.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 
 import java.time.LocalDate;
 
@@ -18,13 +16,13 @@ import java.time.LocalDate;
 @ToString
 @Table(name = "thesis")
 public class Thesis extends BaseEntity {
+    @Lob
     @Column(name = "title")
     private String title;
-    @Column(name = "text")
+    @Column(name = "text", columnDefinition = "LONGTEXT")
     private String text;
     @Column(name = "date_of_submission")
     private LocalDate dateOfSubmission;
-
     @OneToOne
     private Application application;
 

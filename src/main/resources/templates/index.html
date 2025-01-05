@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head">
-</head>
 <body>
-<h1>Digital Pharmacy</h1>
-<nav th:replace="fragments :: navigation"></nav>
-<h1 th:text="'Hello and  ' + ${welcome}"></h1>
-<footer th:replace="fragments :: footer"></footer>
+<div th:replace="~{fragments :: head}"></div>
+<div th:replace="~{fragments :: header-nav}"></div>
+<h1>Diplomation system</h1>
+<img src="../static/images/graduation_dog.jpg" class="img-fluid mx-auto d-block w-25"
+        th:src="@{/images/graduation_dog.jpg}" alt="Dog">
+<footer th:replace="~{fragments :: footer}"></footer>
 </body>
 </html>
