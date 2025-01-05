@@ -15,10 +15,8 @@
         <input type="text" id="name" th:field="*{student.name}"/>
         <label for="FNumber">FNumber: </label>
         <input type="hidden" id="FNumber" th:field="*{student.FNumber}"/>
-        <button type="submit">Update Student
-<!--            <a th:href="@{'/students/update/'+${medicine.id}}">Update Student</a>-->
-        </button>
-
+        <button type="submit">Update Student</button>
+    </form>
     <footer th:replace="~{fragments :: footer}"></footer>
 </body>
 </html>

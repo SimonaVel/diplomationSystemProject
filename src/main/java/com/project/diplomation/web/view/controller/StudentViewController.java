@@ -42,4 +42,14 @@ public class StudentViewController {
         this.studentService.updateStudent(student, id);
         return "redirect:/students";
     }
+    @GetMapping("/create")
+    public String showCreateStudentForm(Model model) {
+        model.addAttribute("student", new Student());
+        return "/students/create";
+    }
+    @PostMapping("/save")
+    public String createStudent(@ModelAttribute("student") Student student) {
+        this.studentService.createStudentDTO(student);
+        return "redirect:/students";
+    }
 }
