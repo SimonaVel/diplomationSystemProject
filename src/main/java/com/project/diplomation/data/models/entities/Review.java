@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @ToString
-public class Recension extends BaseEntity {
+public class Review extends BaseEntity {
     @Column(name = "date_of_submission")
     private LocalDate dateOfSubmission;
     @Column(name = "text", columnDefinition = "TEXT")
@@ -30,5 +30,5 @@ public class Recension extends BaseEntity {
     private Thesis thesis;
     @Column(name = "is_passed")
     private boolean isPassed;
-    public Recension() {}
+    public Review() {}
 }

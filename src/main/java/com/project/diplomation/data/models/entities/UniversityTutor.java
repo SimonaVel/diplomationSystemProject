@@ -4,7 +4,6 @@ import com.project.diplomation.data.models.enums.PositionType;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -25,7 +24,7 @@ public class UniversityTutor extends BaseEntity {
     private PositionType positionType;
 
     @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Recension> recensions;
+    private List<Review> reviews;
     @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Application> applications;
 }

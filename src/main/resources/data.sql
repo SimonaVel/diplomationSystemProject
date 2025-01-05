@@ -26,6 +26,9 @@ VALUES ('2024-03-25', 'Since AI is becoming more intelligent every day, soon eno
 INSERT INTO `diplomation-demo`.`thesis` (`date_of_submission`, `text`, `title`, `application_id`)
 VALUES ('2025-01-02', 'Robots are the key to wealth. If every pensioner gets a robot that works and generates money, they will be provided for financially and would actually get to enjoy retirement.', 'Robots for grandma', '3');
 
--- RECENSIONS
-INSERT INTO `diplomation-demo`.`recension` (`conclusion`, `date_of_submission`, `is_passed`, `text`, `reviewer_id`, `thesis_id`) VALUES ('yuh', '2025-01-02', TRUE, 'yes', '2', '1');
-INSERT INTO `diplomation-demo`.`recension` (`conclusion`, `date_of_submission`, `is_passed`, `text`, `reviewer_id`, `thesis_id`) VALUES ('nah', '2023-04-01', FALSE, 'no', '1', '2');
+-- REVIEWS
+INSERT INTO `diplomation-demo`.`review` (`conclusion`, `date_of_submission`, `is_passed`, `text`, `reviewer_id`, `thesis_id`) VALUES ('yuh', '2025-01-02', TRUE, 'yes', '2', '1');
+INSERT INTO `diplomation-demo`.`review` (`conclusion`, `date_of_submission`, `is_passed`, `text`, `reviewer_id`, `thesis_id`) VALUES ('nah', '2023-04-01', FALSE, 'no', '1', '2');
+
+-- DEFENSES
+INSERT INTO `diplomation-demo`.`defense` (`date`, `grade`, `thesis_id`) VALUES ('2025-05-01', '6', '1');

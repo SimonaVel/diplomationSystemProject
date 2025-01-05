@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.Type;
 
 import java.time.LocalDate;
 
@@ -30,7 +29,7 @@ public class Thesis extends BaseEntity {
     private Defense defense;
 
     @OneToOne(mappedBy = "thesis")
-    private Recension recension;
+    private Review review;
 
     public Thesis() {}
 }

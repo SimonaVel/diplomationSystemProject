@@ -16,7 +16,7 @@ public class CreateUniversityTutorDTO {
     private String name;
     private PositionType positionType;
 //    @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private List<Recension> recensions;
+//    private List<Review> reviews;
 //    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    private List<Application> applications;
 }
