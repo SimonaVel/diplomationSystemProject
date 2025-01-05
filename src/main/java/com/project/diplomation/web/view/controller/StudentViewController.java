@@ -1,14 +1,20 @@
 package com.project.diplomation.web.view.controller;
 
+import com.project.diplomation.data.models.dto.CreateStudentDTO;
 import com.project.diplomation.data.models.entities.Student;
+import com.project.diplomation.data.models.entities.StudentDTO;
 import com.project.diplomation.service.StudentService;
 import com.project.diplomation.util.MapperUtil;
+import com.project.diplomation.web.view.model.CreateStudentViewModel;
 import com.project.diplomation.web.view.model.StudentViewModel;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Controller
@@ -48,8 +54,12 @@ public class StudentViewController {
         return "/students/create";
     }
     @PostMapping("/save")
-    public String createStudent(@ModelAttribute("student") Student student) {
-        this.studentService.createStudentDTO(student);
+    public String createStudent(@Valid @ModelAttribute("student") CreateStudentViewModel student, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/students/create";
+        }
+        this.studentService
+            .createStudentDTO(mapperUtil.getModelMapper().map(student, Student.class));
         return "redirect:/students";
     }
 }

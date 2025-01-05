@@ -15,7 +15,6 @@ import java.time.LocalDate;
 @ToString
 @Table(name = "thesis")
 public class Thesis extends BaseEntity {
-    @Lob
     @Column(name = "title")
     private String title;
     @Column(name = "text", columnDefinition = "LONGTEXT")

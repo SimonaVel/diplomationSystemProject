@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.HashSet;
 
@@ -24,6 +25,8 @@ public class StudentDTO {
     private long id;
     @NotBlank
     private String name;
+    @NotBlank
+    @UniqueElements
     @Pattern(regexp = "[0-9]{5,6}", message = "Faculty numbers should consist of 5 or 6 consecutive numbers!")
     private String fNumber;
 
