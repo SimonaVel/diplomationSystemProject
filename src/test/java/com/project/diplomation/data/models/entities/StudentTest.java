@@ -9,7 +9,7 @@ class StudentTest {
     Student student;
     @BeforeEach
     void testSetUp() {
-        student = new Student("John Doe", "123456");
+        student = new Student("John Doe", "123456", null);
     }
     @Test
     void testStudentCorrectFNumber() {
