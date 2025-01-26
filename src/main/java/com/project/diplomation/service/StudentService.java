@@ -61,15 +61,18 @@ public class StudentService {
 //    }
 
     public Student updateStudent(Student student, long id) {
+//        student == json Entity
+//        student1 == db Entity
+//        if student1.field == null, then student.field = student.field
         return this.studentRepo.findById(id)
             .map(student1 -> {
-                student1.setName(student.getName());
-                student1.setFNumber(student.getFNumber());
+                student1.setName(student.getName() == null ? student1.getName() : student.getName());
+                student1.setFNumber(student.getFNumber() == null ? student1.getFNumber() : student.getFNumber());
                 return this.studentRepo.save(student1);
             })
-                // if the student with the given id is not found, throw an exception
+//                // if the student with the given id is not found, throw an exception
                 .orElseThrow(() -> new RuntimeException("Student with id= " + id + " not found!"));
-                // if the student with the given id is not found, create a new student
+//                // if the student with the given id is not found, create a new student
 //                .orElseGet(() -> this.studentRepo.save(student));
     }
 

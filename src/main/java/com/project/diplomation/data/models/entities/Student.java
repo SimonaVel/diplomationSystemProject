@@ -23,7 +23,6 @@ public class Student extends BaseEntity {
     @Column(name = "name")
     private String name;
     @Column(name = "f_number", unique = true)
-    @NotBlank
     @Pattern(regexp = "[0-9]{5,6}", message = "Faculty numbers should consist of 5 or 6 consecutive numbers!")
     private String fNumber;
 
