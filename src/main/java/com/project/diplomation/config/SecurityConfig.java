@@ -1,5 +1,6 @@
 package com.project.diplomation.config;
 import com.project.diplomation.service.UserService;
+import jakarta.servlet.DispatcherType;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -66,12 +67,14 @@ public class SecurityConfig {
         return jwtAuthenticationConverter;
     }
 
+//    Can you allow all requests withouth authentication?
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests
+        http
+                .authorizeHttpRequests
                         (authz -> authz
-                                .requestMatchers("/students/*").hasAuthority("tutor")
-                                .anyRequest().authenticated()
+                                .anyRequest()
+                                        .permitAll()
                         )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwtCustomizer -> jwtCustomizer
@@ -79,4 +82,24 @@ public class SecurityConfig {
                 .oauth2Login(Customizer.withDefaults());
         return http.build();
     }
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeHttpRequests
+//                        (authz -> authz
+////                                .requestMatchers("/students/*").hasAuthority("tutor")
+////                                .requestMatchers("/uni-tutors/*").hasAuthority("tutor")
+////                                        .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
+////                                        .requestMatchers("/***").permitAll()
+//
+//                                .anyRequest()
+//                                        .permitAll()
+////                                        .authenticated()
+//                        )
+//                .oauth2ResourceServer(oauth2 -> oauth2
+//                        .jwt(jwtCustomizer -> jwtCustomizer
+//                                .jwtAuthenticationConverter(jwtAuthenticationConverter())))
+//                .oauth2Login(Customizer.withDefaults());
+//        return http.build();
+//    }
 }
