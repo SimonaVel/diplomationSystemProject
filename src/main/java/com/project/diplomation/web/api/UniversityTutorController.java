@@ -41,4 +41,14 @@ public class UniversityTutorController {
     public List<UniversityTutorDTO> getAllUniversityTutors() {
         return this.universityTutorService.getAllUniversityTutors();
     }
+
+    @PutMapping("/update/{id}")
+    public void updateUniTutor(@PathVariable long id, @RequestBody UniversityTutor uniTutor) {
+        this.universityTutorService.updateUniTutor(uniTutor, id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteUniTutor(@PathVariable long id) {
+        this.universityTutorService.deleteUniTutor(id);
+    }
 }

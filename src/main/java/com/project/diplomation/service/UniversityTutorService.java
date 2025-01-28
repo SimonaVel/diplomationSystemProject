@@ -1,12 +1,9 @@
 package com.project.diplomation.service;
 
-import com.project.diplomation.data.models.dto.CreateStudentDTO;
 import com.project.diplomation.data.models.dto.CreateUniversityTutorDTO;
 import com.project.diplomation.data.models.dto.UniversityTutorDTO;
-import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.UniversityTutor;
 import com.project.diplomation.data.models.enums.PositionType;
-import com.project.diplomation.data.repositories.StudentRepo;
 import com.project.diplomation.data.repositories.UniversityTutorRepo;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
@@ -50,4 +47,17 @@ public class UniversityTutorService {
                         , UniversityTutorDTO.class);
     }
 
+    public UniversityTutor updateUniTutor(UniversityTutor universityTutor, long id) {
+        return this.universityTutorRepo.findById(id)
+                .map(tutor -> {
+                    tutor.setName(universityTutor.getName() == null ? tutor.getName() : universityTutor.getName());
+                    tutor.setPositionType(universityTutor.getPositionType() == null ? tutor.getPositionType() : universityTutor.getPositionType());
+                    return this.universityTutorRepo.save(tutor);
+                })
+                .orElseThrow(() -> new RuntimeException("UniTutor with id= " + id + " not found!"));
+    }
+
+    public void deleteUniTutor(long id) {
+        this.universityTutorRepo.deleteById(id);
+    }
 }
