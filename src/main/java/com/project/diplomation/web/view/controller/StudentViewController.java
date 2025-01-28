@@ -24,6 +24,14 @@ public class StudentViewController {
     private final MapperUtil mapperUtil;
     private final StudentService studentService;
 
+    @GetMapping("/view/{id}")
+    public String getStudentView(Model model, @PathVariable long id) {
+        StudentViewModel student = mapperUtil
+                .getModelMapper()
+                .map(this.studentService.getStudent(id), StudentViewModel.class);
+        model.addAttribute("student", student);
+        return "students/view";
+    }
     @GetMapping
     String getStudentsView(Model model) {
         List<StudentViewModel> students = mapperUtil
