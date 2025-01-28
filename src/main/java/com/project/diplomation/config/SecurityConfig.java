@@ -67,12 +67,12 @@ public class SecurityConfig {
         return jwtAuthenticationConverter;
     }
 
-//    Can you allow all requests withouth authentication?
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests
                         (authz -> authz
+                                .requestMatchers("/applications/create").permitAll()
                                 .anyRequest()
                                         .permitAll()
                         )

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Application details</title>
+</head>
+<div th:replace="~{fragments :: head}"></div>
+<div th:replace="~{fragments :: header-nav}"></div>
+<h3 th:unless="${application}">There is no such application!</h3>
+
+<div class="container mt-5">
+    <h1>Application details</h1>
+    <p><strong>Topic:</strong> <span th:text="${topic}">Topic</span></p>
+    <p><strong>Aims:</strong> <span th:text="${aims}">Aims</span></p>
+    <p><strong>Problems:</strong> <span th:text="${problems}">Problems</span></p>
+    <p><strong>Technologies:</strong> <span th:text="${technologies}">Technologies</span></p>
+    <p><strong>Status:</strong> <span th:text="${status}">Application status</span></p>
+    <p><strong>Student id:</strong> <span th:text="${studentId}">Student Id</span></p>
+    <p><strong>Supervisor id:</strong> <span th:text="${tutorId}">Supervisor Id</span></p>
+
+<!--    <p th:text="${application}">Application Object Debug</p>-->
+</div>
+
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

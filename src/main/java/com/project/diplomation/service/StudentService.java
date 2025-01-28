@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-// for StudentRepo?
 @RequiredArgsConstructor
 public class StudentService {
     private final StudentRepo studentRepo;
