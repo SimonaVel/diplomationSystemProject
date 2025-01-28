@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit university tutor</title>
+</head>
+<body>
+    <div th:replace="~{fragments :: head}"></div>
+    <div th:replace="~{fragments :: header-nav}"></div>
+
+    <h4>Edit university tutor</h4>
+    <form th:action="@{'/uniTutors/update/' + ${uniTutor.id}}" method="post">
+        <input type="hidden" th:field="*{uniTutor.id}"/>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{uniTutor.name}"/>
+        <label for="positionType">Position type: </label>
+        <input type="text" id="positionType" th:field="*{uniTutor.positionType}"/>
+        <button type="submit">Update tutor</button>
+    </form>
+    <footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

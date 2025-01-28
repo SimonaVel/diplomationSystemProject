@@ -3,22 +3,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create student</title>
+    <title>Create university tutor</title>
 </head>
 <body>
     <div th:replace="~{fragments :: head}"></div>
     <div th:replace="~{fragments :: header-nav}"></div>
-    <h4>Create student</h4>
-    <form th:action="@{/students/save}" th:object="${student}" method="post">
+    <h4>Create university tutor</h4>
+    <form th:action="@{/uniTutors/save}" th:object="${uniTutor}" method="post">
         <div class="form-group">
             <label for="name">Name: </label>
             <input class = "form-control" type="text" id="name" th:field="*{name}"/>
             <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
-            <label for="FNumber">FNumber: </label>
-            <input class = "form-control" type="text" id="FNumber" th:field="*{FNumber}"/>
-            <span class="text-danger" th:if="${#fields.hasErrors('FNumber')}" th:errors="*{FNumber}">Faculty number Error</span>
+            <label for="positionType">Position: </label>
+            <input class = "form-control" type="text" id="positionType" th:field="*{positionType}"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('positionType')}" th:errors="*{positionType}">Position type Error</span>
         </div>
-        <button type="submit">Save Student</button>
+        <button type="submit">Save university tutors</button>
     </form>
     <footer th:replace="~{fragments :: footer}"></footer>
 </body>
