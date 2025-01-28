@@ -15,10 +15,16 @@
             <input class = "form-control" type="text" id="name" th:field="*{name}"/>
             <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
             <label for="positionType">Position: </label>
-            <input class = "form-control" type="text" id="positionType" th:field="*{positionType}"/>
+            <select id="positionType" th:field="*{positionType}">
+                <option th:each="positionType : ${positionTypes}"
+                        th:value="${positionType}"
+                        th:text="${positionType}"
+                        th:selected="${positionType == uniTutor.positionType}">
+                </option>
+            </select>
             <span class="text-danger" th:if="${#fields.hasErrors('positionType')}" th:errors="*{positionType}">Position type Error</span>
         </div>
-        <button type="submit">Save university tutors</button>
+        <button type="submit">Save university tutor</button>
     </form>
     <footer th:replace="~{fragments :: footer}"></footer>
 </body>

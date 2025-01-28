@@ -7,8 +7,8 @@ import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
 /**
- * Represents the data of a student.
- * Has an id, name and faculty number.
+ * Represents the data of a uniTutor.
+ * Has a name and position type.
  */
 @Getter
 @Setter

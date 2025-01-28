@@ -2,6 +2,7 @@ package com.project.diplomation.web.view.controller;
 
 import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.UniversityTutor;
+import com.project.diplomation.data.models.enums.PositionType;
 import com.project.diplomation.service.StudentService;
 import com.project.diplomation.service.UniversityTutorService;
 import com.project.diplomation.util.MapperUtil;
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -49,6 +51,8 @@ public class UniversityTutorViewController {
     @GetMapping("/edit/{id}")
     public String showEditUniTutorForm(Model model, @PathVariable Long id) {
         model.addAttribute("uniTutor", this.universityTutorService.getUniversityTutor(id));
+        List<PositionType> positionTypes = Arrays.asList(PositionType.values());
+        model.addAttribute("positionTypes", positionTypes);
         return "/uniTutors/edit";
     }
 
@@ -60,6 +64,8 @@ public class UniversityTutorViewController {
     @GetMapping("/create")
     public String showCreateUniTutorForm(Model model) {
         model.addAttribute("uniTutor", new UniversityTutor());
+        List<PositionType> positionTypes = Arrays.asList(PositionType.values());
+        model.addAttribute("positionTypes", positionTypes);
         return "/uniTutors/create";
     }
     @PostMapping("/save")
