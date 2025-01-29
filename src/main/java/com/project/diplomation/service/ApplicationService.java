@@ -16,13 +16,13 @@ public class ApplicationService {
     private final ApplicationRepo applicationRepo;
     private final MapperUtil mapperUtil;
 
-//    public CreateApplicationDTO createApplicationDTO(Application application) {
-//        return mapperUtil.getModelMapper()
-//                .map(this.applicationRepo
-//                        .save(mapperUtil.getModelMapper()
-//                                .map(application, Application.class)), CreateApplicationDTO.class);
-//
-//    }
+    public CreateApplicationDTO createApplicationDTO(Application application) {
+        return mapperUtil.getModelMapper()
+                .map(this.applicationRepo
+                        .save(mapperUtil.getModelMapper()
+                                .map(application, Application.class)), CreateApplicationDTO.class);
+
+    }
 
     public ApplicationDTO getApplication(long id) {
         return this.mapperUtil.getModelMapper()

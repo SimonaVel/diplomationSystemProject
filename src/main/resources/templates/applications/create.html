@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create an application</title>
+</head>
+<body>
+<div th:replace="~{fragments :: head}"></div>
+<div th:replace="~{fragments :: header-nav}"></div>
+<h4>Create an application</h4>
+<form th:action="@{/applications/save}" th:object="${appl}" method="post">
+    <div class="form-group">
+        <label for="topic">Topic: </label>
+        <input class = "form-control" type="text" id="topic" th:field="*{topic}"/>
+        <span class="text-danger" th:if="${#fields.hasErrors('topic')}" th:errors="*{topic}">Topic Error</span>
+
+        <label for="aims">Aims: </label>
+        <input class = "form-control" type="text" id="aims" th:field="*{aims}"/>
+        <span class="text-danger" th:if="${#fields.hasErrors('aims')}" th:errors="*{aims}">Aims Error</span>
+
+        <label for="problems">Problems: </label>
+        <input class = "form-control" type="text" id="problems" th:field="*{problems}"/>
+        <span class="text-danger" th:if="${#fields.hasErrors('problems')}" th:errors="*{problems}">Problems Error</span>
+
+        <label for="technologies">Technologies: </label>
+        <input class = "form-control" type="text" id="technologies" th:field="*{technologies}"/>
+        <span class="text-danger" th:if="${#fields.hasErrors('technologies')}" th:errors="*{technologies}">Technologies Error</span>
+
+        <label for="status">Status: </label>
+        <select id="status" th:field="*{status}">
+            <option th:each="status : ${statuses}"
+                    th:value="${status}"
+                    th:text="${status}"
+                    th:selected="${status == appl.status}">
+            </option>
+        </select>
+        <span class="text-danger" th:if="${#fields.hasErrors('status')}" th:errors="*{status}">Status Error</span>
+
+        <br>
+
+<!--        <label for="studentId">Student id: </label>-->
+<!--        <label for="studentId">Student id: </label>-->
+<!--        <select id="studentId" th:field="*{student}">-->
+<!--            <option th:each="studentId : ${studentIds}"-->
+<!--                    th:value="${studentId}"-->
+<!--                    th:text="${studentId}">-->
+<!--            </option>-->
+<!--        </select>-->
+<!--&lt;!&ndash;        <span class="text-danger" th:if="${#fields.hasErrors('studentId')}" th:errors="*{student}">Student id Error</span>&ndash;&gt;-->
+<!--        <br>-->
+
+<!--        <label for="tutorId">Supervisor id: </label>-->
+<!--        <select id="tutorId" th:field="*{tutor}">-->
+<!--            <option th:each="tutorId : ${tutorIds}"-->
+<!--                    th:value="${tutorId}"-->
+<!--                    th:text="${tutorId}">-->
+<!--            </option>-->
+<!--        </select>-->
+<!--        <span class="text-danger" th:if="${#fields.hasErrors('tutor')}" th:errors="*{tutor}">Tutor id Error</span>-->
+
+    </div>
+    <button type="submit">Save application</button>
+</form>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

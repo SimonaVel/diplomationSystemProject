@@ -24,15 +24,15 @@ public class Application extends BaseEntity {
     private String problems;
     private String technologies;
     private ApplicationStatus status;
-    @ManyToOne
-    @NotNull
+//    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uni_tutor_id", nullable = false)
     private UniversityTutor tutor;
-    @NotNull
-    @OneToOne(mappedBy = "application")
+//    @NotNull
+    @OneToOne(mappedBy = "application", fetch = FetchType.LAZY)
     private Thesis thesis;
     public Application() {}
 }
