@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Create an application</title>
@@ -39,25 +38,26 @@
 
         <br>
 
-<!--        <label for="studentId">Student id: </label>-->
-<!--        <label for="studentId">Student id: </label>-->
-<!--        <select id="studentId" th:field="*{student}">-->
-<!--            <option th:each="studentId : ${studentIds}"-->
-<!--                    th:value="${studentId}"-->
-<!--                    th:text="${studentId}">-->
-<!--            </option>-->
-<!--        </select>-->
-<!--&lt;!&ndash;        <span class="text-danger" th:if="${#fields.hasErrors('studentId')}" th:errors="*{student}">Student id Error</span>&ndash;&gt;-->
-<!--        <br>-->
+        <label for="studentId">Student id: </label>
+        <select id="studentId" th:field="*{studentId}">
+            <option th:each="studentId : ${studentIds}"
+                    th:value="${studentId}"
+                    th:text="${studentId}"
+                    th:selected="${status == appl.status}">
 
-<!--        <label for="tutorId">Supervisor id: </label>-->
-<!--        <select id="tutorId" th:field="*{tutor}">-->
-<!--            <option th:each="tutorId : ${tutorIds}"-->
-<!--                    th:value="${tutorId}"-->
-<!--                    th:text="${tutorId}">-->
-<!--            </option>-->
-<!--        </select>-->
-<!--        <span class="text-danger" th:if="${#fields.hasErrors('tutor')}" th:errors="*{tutor}">Tutor id Error</span>-->
+            </option>
+        </select>
+        <span class="text-danger" th:if="${#fields.hasErrors('studentId')}" th:errors="*{appl.studentId}">Student id Error</span>
+        <br>
+
+        <label for="tutorId">Supervisor id: </label>
+        <select id="tutorId" th:field="*{tutorId}">
+            <option th:each="tutorId : ${tutorIds}"
+                    th:value="${tutorId}"
+                    th:text="${tutorId}">
+            </option>
+        </select>
+        <span class="text-danger" th:if="${#fields.hasErrors('tutorId')}" th:errors="*{appl.tutorId}">Tutor id Error</span>
 
     </div>
     <button type="submit">Save application</button>

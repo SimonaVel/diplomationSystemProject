@@ -3,7 +3,11 @@ package com.project.diplomation.service;
 import com.project.diplomation.data.models.dto.ApplicationDTO;
 import com.project.diplomation.data.models.dto.CreateApplicationDTO;
 import com.project.diplomation.data.models.entities.Application;
+import com.project.diplomation.data.models.entities.Student;
+import com.project.diplomation.data.models.entities.UniversityTutor;
 import com.project.diplomation.data.repositories.ApplicationRepo;
+import com.project.diplomation.data.repositories.StudentRepo;
+import com.project.diplomation.data.repositories.UniversityTutorRepo;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -52,7 +56,8 @@ public class ApplicationService {
 //        this.applicationRepo.save(applicationToUpdate);
 //    }
 
-//    public void deleteApplication(long id) {
-//        this.applicationRepo.deleteById(id);
-//    }
+    public void deleteApplication(long id) {
+        this.applicationRepo.deleteById(id);
+    }
+
 }

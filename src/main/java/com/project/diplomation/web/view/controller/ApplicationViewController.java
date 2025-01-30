@@ -90,6 +90,7 @@ public class ApplicationViewController {
         if (bindingResult.hasErrors()) {
             return "/applications/create";
         }
+
         this.applicationService
                 .createApplicationDTO(mapperUtil.getModelMapper().map(appl, Application.class));
         return "redirect:/applications";
