@@ -43,21 +43,21 @@
             <option th:each="studentId : ${studentIds}"
                     th:value="${studentId}"
                     th:text="${studentId}"
-                    th:selected="${status == appl.status}">
-
+                    th:selected="${studentId == appl.studentId}">
             </option>
         </select>
-        <span class="text-danger" th:if="${#fields.hasErrors('studentId')}" th:errors="*{appl.studentId}">Student id Error</span>
+<!--        <span class="text-danger" th:if="${#fields.hasErrors('studentId')}" th:errors="*{appl.studentId}">Student id Error</span>-->
         <br>
 
         <label for="tutorId">Supervisor id: </label>
         <select id="tutorId" th:field="*{tutorId}">
             <option th:each="tutorId : ${tutorIds}"
                     th:value="${tutorId}"
-                    th:text="${tutorId}">
+                    th:text="${tutorId}"
+                    th:selected="${tutorId == appl.tutorId}">
             </option>
         </select>
-        <span class="text-danger" th:if="${#fields.hasErrors('tutorId')}" th:errors="*{appl.tutorId}">Tutor id Error</span>
+<!--        <span class="text-danger" th:if="${#fields.hasErrors('tutorId')}" th:errors="*{appl.tutorId}">Tutor id Error</span>-->
 
     </div>
     <button type="submit">Save application</button>

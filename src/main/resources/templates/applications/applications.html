@@ -35,8 +35,8 @@
                 <td th:text="${appl.studentId}"></td>
                 <td th:text="${appl.tutorId}"></td>
 
-                <td><a class="btn btn-info" th:href="@{'/applications/edit/'+${application.id}}">Edit</a></td>
-                <td><a class="btn btn-danger" th:href="@{'/applications/delete/'+${application.id}}">Delete</a></td>
+                <td><a class="btn btn-info" th:href="@{'/applications/edit/'+${appl.id}}">Edit</a></td>
+                <td><a class="btn btn-danger" th:href="@{'/applications/delete/'+${appl.id}}">Delete</a></td>
             </tr>
             <footer th:replace="~{fragments :: footer}"></footer>
         </tbody>

@@ -1,11 +1,15 @@
 package com.project.diplomation.web.view.controller;
 
+import com.project.diplomation.data.models.dto.CreateApplicationDTO;
 import com.project.diplomation.data.models.dto.UniversityTutorDTO;
 import com.project.diplomation.data.models.entities.Application;
 import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.StudentDTO;
+import com.project.diplomation.data.models.entities.UniversityTutor;
 import com.project.diplomation.data.models.enums.ApplicationStatus;
 import com.project.diplomation.data.models.enums.PositionType;
+import com.project.diplomation.data.repositories.StudentRepo;
+import com.project.diplomation.data.repositories.UniversityTutorRepo;
 import com.project.diplomation.service.ApplicationService;
 import com.project.diplomation.service.StudentService;
 import com.project.diplomation.service.UniversityTutorService;
@@ -32,6 +36,8 @@ public class ApplicationViewController {
     private final ApplicationService applicationService;
     private final StudentService studentService;
     private final UniversityTutorService universityTutorService;
+    private final StudentRepo studentRepo;
+    private final UniversityTutorRepo tutorRepo;
 
     @GetMapping("/view/{id}")
     public String getApplicationView(Model model, @PathVariable long id) {
@@ -52,11 +58,12 @@ public class ApplicationViewController {
         // returns the name of the template page(view) to be rendered
         return "applications/applications";
     }
-//    @GetMapping("/delete/{id}")
-//    public String deleteStudent(@PathVariable long id) {
-//        this.studentService.deleteStudent(id);
-//        return "redirect:/students";
-//    }
+    @GetMapping("/delete/{id}")
+    public String deleteApplication(@PathVariable long id) {
+        this.applicationService.deleteApplication(id);
+        return "redirect:/applications";
+    }
+
 //    @GetMapping("/edit/{id}")
 //    public String showEditStudentForm(Model model, @PathVariable Long id) {
 //        model.addAttribute("student", this.studentService.getStudent(id));
@@ -69,30 +76,46 @@ public class ApplicationViewController {
 //        return "redirect:/students";
 //    }
     @GetMapping("/create")
-    public String showCreateStudentForm(Model model) {
-        model.addAttribute("appl", new Application());
+    public String showCreateApplicationForm(Model model) {
+        model.addAttribute("appl", new CreateApplicationDTO());
         List<ApplicationStatus> statuses = Arrays.asList(ApplicationStatus.values());
         model.addAttribute("statuses", statuses);
+
         List<Long> studentIds = studentService.getAllStudents()
                 .stream()
                 .map(StudentDTO::getId)
                 .toList();
         model.addAttribute("studentIds", studentIds);
+
         List<Long> tutorIds = universityTutorService.getAllUniversityTutors()
                 .stream()
                 .map(UniversityTutorDTO::getId)
                 .toList();
         model.addAttribute("tutorIds", tutorIds);
+
         return "/applications/create";
     }
+
     @PostMapping("/save")
-    public String createApplication(@Valid @ModelAttribute("appl")CreateApplicationViewModel appl, BindingResult bindingResult) {
+    public String createApplication(@Valid @ModelAttribute("appl") CreateApplicationDTO appl, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/applications/create";
         }
 
+        Student student = studentRepo.getById(appl.getStudentId());
+        UniversityTutor tutor = tutorRepo.getById(appl.getTutorId());
+
+        Application application = new Application();
+        application.setTopic(appl.getTopic());
+        application.setAims(appl.getAims());
+        application.setProblems(appl.getProblems());
+        application.setTechnologies(appl.getTechnologies());
+        application.setStatus(appl.getStatus());
+        application.setStudent(student);
+        application.setTutor(tutor);
+
         this.applicationService
-                .createApplicationDTO(mapperUtil.getModelMapper().map(appl, Application.class));
+                .createApplicationDTO(application);
         return "redirect:/applications";
     }
 }
