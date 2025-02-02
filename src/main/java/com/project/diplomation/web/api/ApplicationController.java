@@ -62,10 +62,10 @@ public class ApplicationController {
         return this.applicationService.getAllApplications();
     }
 
-//    @PutMapping("/update/{id}")
-//    public void updateApplication(@PathVariable long id, @RequestBody Application application) {
-//        this.applicationService.updateApplication(application, id);
-//    }
+    @PutMapping("/update/{id}")
+    public ApplicationDTO updateApplication(@PathVariable long id, @RequestBody ApplicationDTO applicationDTO) {
+        return this.applicationService.updateApplication(applicationDTO, id);
+    }
 
     @DeleteMapping("/delete/{id}")
     public void deleteApplication(@PathVariable long id) {

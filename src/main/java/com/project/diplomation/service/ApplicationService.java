@@ -19,6 +19,8 @@ import java.util.List;
 public class ApplicationService {
     private final ApplicationRepo applicationRepo;
     private final MapperUtil mapperUtil;
+    private final StudentRepo studentRepo;
+    private final UniversityTutorRepo tutorRepo;
 
     public CreateApplicationDTO createApplicationDTO(Application application) {
         return mapperUtil.getModelMapper()
@@ -47,14 +49,24 @@ public class ApplicationService {
                         this.applicationRepo.findAll(), ApplicationDTO.class);
     }
 
-//    public void updateApplication(Application application, long id) {
-//        Application applicationToUpdate = this.applicationRepo.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Application with id= " + id + " not found!"));
-//        applicationToUpdate.setStudentId(application.getStudentId());
-//        applicationToUpdate.setApplicationDate(application.getApplicationDate());
-//        applicationToUpdate.setApplicationStatus(application.getApplicationStatus());
-//        this.applicationRepo.save(applicationToUpdate);
-//    }
+    public ApplicationDTO updateApplication(ApplicationDTO applicationDTO, long id) {
+//        applicationDTO == json object
+//        application == entity from db
+        return this.applicationRepo.findById(id)
+                .map(application -> {
+                    application.setTopic(applicationDTO.getTopic() == null ? application.getTopic() : applicationDTO.getTopic());
+                    application.setAims(applicationDTO.getAims() == null ? application.getAims() : applicationDTO.getAims());
+                    application.setProblems(applicationDTO.getProblems() == null ? application.getProblems() : applicationDTO.getProblems());
+                    application.setTechnologies(applicationDTO.getTechnologies() == null ? application.getTechnologies() : applicationDTO.getTechnologies());
+                    application.setStatus(applicationDTO.getStatus() == null ? application.getStatus() : applicationDTO.getStatus());
+                    application.setStudent(applicationDTO.getStudentId() == 0 ? application.getStudent() : studentRepo.getById(applicationDTO.getStudentId()));
+                    application.setTutor(applicationDTO.getTutorId() == 0 ? application.getTutor() : tutorRepo.getById(applicationDTO.getTutorId()));
+
+                    return mapperUtil.getModelMapper()
+                            .map(this.applicationRepo.save(application), ApplicationDTO.class);
+                })
+                .orElseThrow(() -> new RuntimeException("Application with id=" + id + " not found!"));
+    }
 
     public void deleteApplication(long id) {
         this.applicationRepo.deleteById(id);
