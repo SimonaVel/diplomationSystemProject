@@ -1,5 +1,6 @@
 package com.project.diplomation.web.view.controller;
 
+import com.project.diplomation.data.models.dto.ApplicationDTO;
 import com.project.diplomation.data.models.dto.CreateApplicationDTO;
 import com.project.diplomation.data.models.dto.UniversityTutorDTO;
 import com.project.diplomation.data.models.entities.Application;
@@ -64,17 +65,30 @@ public class ApplicationViewController {
         return "redirect:/applications";
     }
 
-//    @GetMapping("/edit/{id}")
-//    public String showEditStudentForm(Model model, @PathVariable Long id) {
-//        model.addAttribute("student", this.studentService.getStudent(id));
-//        return "/students/edit";
-//    }
-//
-//    @PostMapping("/update/{id}")
-//    public String updateStudent(@PathVariable long id, Student student) {
-//        this.studentService.updateStudent(student, id);
-//        return "redirect:/students";
-//    }
+    @GetMapping("/edit/{id}")
+    public String showEditApplicationForm(Model model, @PathVariable Long id) {
+        model.addAttribute("appl", this.applicationService.getApplication(id));
+        List<ApplicationStatus> statuses = Arrays.asList(ApplicationStatus.values());
+        model.addAttribute("statuses", statuses);
+        List<Long> studentIds = studentService.getAllStudents()
+                .stream()
+                .map(StudentDTO::getId)
+                .toList();
+        model.addAttribute("studentIds", studentIds);
+
+        List<Long> tutorIds = universityTutorService.getAllUniversityTutors()
+                .stream()
+                .map(UniversityTutorDTO::getId)
+                .toList();
+        model.addAttribute("tutorIds", tutorIds);
+        return "/applications/edit";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateApplication(@PathVariable long id, ApplicationDTO applicationDTO) {
+        this.applicationService.updateApplication(applicationDTO, id);
+        return "redirect:/applications";
+    }
     @GetMapping("/create")
     public String showCreateApplicationForm(Model model) {
         model.addAttribute("appl", new CreateApplicationDTO());
