@@ -21,7 +21,7 @@ public class Thesis extends BaseEntity {
     private String text;
     @Column(name = "date_of_submission")
     private LocalDate dateOfSubmission;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Application application;
 
     @OneToOne(mappedBy = "thesis")
