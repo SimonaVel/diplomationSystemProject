@@ -31,4 +31,4 @@ INSERT INTO `diplomation-demo`.`review` (`conclusion`, `date_of_submission`, `is
 INSERT INTO `diplomation-demo`.`review` (`conclusion`, `date_of_submission`, `is_passed`, `text`, `reviewer_id`, `thesis_id`) VALUES ('nah', '2023-04-01', FALSE, 'no', '1', '2');
 
 -- DEFENSES
-INSERT INTO `diplomation-demo`.`defense` (`date`, `grade`, `thesis_id`) VALUES ('2025-05-01', '6', '1');
+INSERT INTO `diplomation-demo`.`defense` (`date`, `grade`, `review_id`) VALUES ('2025-05-01', '6', '1');

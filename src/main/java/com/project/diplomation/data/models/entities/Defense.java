@@ -25,8 +25,8 @@ public class Defense extends BaseEntity {
     private int grade;
 
     @OneToOne
-    @JoinColumn(name = "thesis_id", unique = true, nullable = false)
-    private Thesis thesis;
+    @JoinColumn(name = "review_id", unique = true, nullable = false)
+    private Review review;
 
     public Defense() {}
 }
