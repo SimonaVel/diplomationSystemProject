@@ -23,7 +23,7 @@ public class Thesis extends BaseEntity {
     private LocalDate dateOfSubmission;
     @OneToOne(cascade = CascadeType.ALL)
     private Application application;
-    
+
     @OneToOne(mappedBy = "thesis")
     private Review review;
 
