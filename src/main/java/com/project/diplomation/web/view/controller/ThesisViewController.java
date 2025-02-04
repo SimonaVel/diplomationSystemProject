@@ -86,22 +86,22 @@ public class ThesisViewController {
         return "/theses/create";
     }
 
-//    @PostMapping("/save")
-//    public String createApplication(@Valid @ModelAttribute("thesis") CreateThesisDTO thesisDTO, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            return "/theses/create";
-//        }
-//
-//        Application application = applicationRepo.getById(thesisDTO.getApplicationId());
-//
-//        Thesis thesis = new Thesis();
-//        thesis.setTitle(thesisDTO.getTitle());
-//        thesis.setText(thesisDTO.getText());
-//        thesis.setDateOfSubmission(thesisDTO.getDateOfSubmission());
-//        thesis.setApplication(application);
-//
-//        this.applicationService
-//                .createApplicationDTO(application);
-//        return "redirect:/theses";
-//    }
+    @PostMapping("/save")
+    public String createThesis(@Valid @ModelAttribute("thesis") CreateThesisDTO thesisDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/theses/create";
+        }
+
+        Application application = applicationRepo.getById(thesisDTO.getApplicationId());
+
+        Thesis thesis = new Thesis();
+        thesis.setTitle(thesisDTO.getTitle());
+        thesis.setText(thesisDTO.getText());
+        thesis.setDateOfSubmission(thesisDTO.getDateOfSubmission());
+        thesis.setApplication(application);
+
+        this.thesisService
+                .createThesisDTO(thesis);
+        return "redirect:/theses";
+    }
 }
