@@ -34,6 +34,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
+//tasks.withType(JavaCompile).configureEach {
+//	options.compilerArgs << "-Xlint:deprecation"
+//}
+
+
 tasks.named('test') {
 	useJUnitPlatform()
 }

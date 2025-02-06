@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reviews!</title>
+</head>
+<div th:replace="~{fragments :: head}"></div>
+<div th:replace="~{fragments :: header-nav}"></div>
+<h3 th:unless="${reviews} and ${reviews.size()}">There are no reviews!</h3>
+<button class="btn btn-outline-primary"><a th:href="@{'/reviews/create'}">Create review</a></button>
+<table class="table table-primary table-striped table-hover table-bordered border-danger-subtle">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Date of submission</th>
+                <th scope="col">Text</th>
+<!--                <th scope="col">Reviewer Id</th>-->
+                <th scope="col">Passed?</th>
+
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody class = "table-group-divider">
+            <tr th:each="review: ${reviews}">
+                <td th:text="${review.id}"></td>
+                <td th:text="${review.dateOfSubmission}"></td>
+                <td th:text="${review.text}"></td>
+<!--                <td th:text="${review.reviewerId}"></td>-->
+                <td th:text="${review.passed}"></td>
+
+                <td><a class="btn btn-info" th:href="@{'/reviews/edit/'+${review.id}}">Edit</a></td>
+                <td><a class="btn btn-danger" th:href="@{'/reviews/delete/'+${review.id}}">Delete</a></td>
+            </tr>
+            <footer th:replace="~{fragments :: footer}"></footer>
+        </tbody>
+    </table>
+</body>
+</html>

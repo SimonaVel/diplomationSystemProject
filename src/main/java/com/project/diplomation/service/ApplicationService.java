@@ -3,8 +3,6 @@ package com.project.diplomation.service;
 import com.project.diplomation.data.models.dto.ApplicationDTO;
 import com.project.diplomation.data.models.dto.CreateApplicationDTO;
 import com.project.diplomation.data.models.entities.Application;
-import com.project.diplomation.data.models.entities.Student;
-import com.project.diplomation.data.models.entities.UniversityTutor;
 import com.project.diplomation.data.repositories.ApplicationRepo;
 import com.project.diplomation.data.repositories.StudentRepo;
 import com.project.diplomation.data.repositories.UniversityTutorRepo;
@@ -61,7 +59,6 @@ public class ApplicationService {
                     application.setStatus(applicationDTO.getStatus() == null ? application.getStatus() : applicationDTO.getStatus());
                     application.setStudent(applicationDTO.getStudentId() == 0 ? application.getStudent() : studentRepo.getById(applicationDTO.getStudentId()));
                     application.setTutor(applicationDTO.getTutorId() == 0 ? application.getTutor() : tutorRepo.getById(applicationDTO.getTutorId()));
-
                     return mapperUtil.getModelMapper()
                             .map(this.applicationRepo.save(application), ApplicationDTO.class);
                 })
