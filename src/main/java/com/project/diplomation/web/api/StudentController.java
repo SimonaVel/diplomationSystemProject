@@ -3,10 +3,13 @@ package com.project.diplomation.web.api;
 import com.project.diplomation.data.models.dto.CreateStudentDTO;
 import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.StudentDTO;
+import com.project.diplomation.exception.StudentNotFoundException;
 import com.project.diplomation.service.StudentService;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -24,16 +27,28 @@ public class StudentController {
 
     @GetMapping("/{id}")
     public StudentDTO getStudent(@PathVariable long id){
-        return this.studentService.getStudent(id);
+        try {
+            return this.studentService.getStudent(id);
+        } catch (StudentNotFoundException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student Not Found", exception);
+        }
     }
     @GetMapping("/by-name/{name}")
     public List<StudentDTO> getStudentByName(@PathVariable String name) {
-        return this.studentService.getStudentByName(name);
+        try {
+            return this.studentService.getStudentByName(name);
+        } catch (StudentNotFoundException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student with such name Not Found", exception);
+        }
     }
 
     @GetMapping("/by-f_number/{fNumber}")
     public StudentDTO getStudentByFNumber(@PathVariable String fNumber) {
-        return this.studentService.getStudentByFNumber(fNumber);
+        try {
+            return this.studentService.getStudentByFNumber(fNumber);
+        } catch (StudentNotFoundException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student with such fNumber Not Found", exception);
+        }
     }
     @GetMapping("/all")
     public List<StudentDTO> getAllStudents() {
@@ -42,11 +57,21 @@ public class StudentController {
 
     @PutMapping("/update/{id}")
     public void updateStudent(@PathVariable long id, @RequestBody Student student) {
-        this.studentService.updateStudent(student, id);
+        try {
+            this.studentService.updateStudent(student, id);
+        } catch (StudentNotFoundException exception) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Student to be updated Not Found", exception);
+        }
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteStudent(@PathVariable long id) {
-        this.studentService.deleteStudent(id);
+        try {
+            this.studentService.deleteStudent(id);
+        } catch (StudentNotFoundException exception) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Student to be deleted Not Found", exception);
+        }
     }
 }

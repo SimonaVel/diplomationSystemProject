@@ -7,12 +7,15 @@ import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.UniversityTutor;
 import com.project.diplomation.data.repositories.StudentRepo;
 import com.project.diplomation.data.repositories.UniversityTutorRepo;
+import com.project.diplomation.exception.ApplicationNotFoundException;
 import com.project.diplomation.service.ApplicationService;
 import com.project.diplomation.service.StudentService;
 import com.project.diplomation.service.UniversityTutorService;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -49,12 +52,20 @@ public class ApplicationController {
 
     @GetMapping("/{id}")
     public ApplicationDTO getApplication(@PathVariable long id){
-        return this.applicationService.getApplication(id);
+        try {
+            return this.applicationService.getApplication(id);
+        } catch (ApplicationNotFoundException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Application Not Found", exception);
+        }
     }
 
     @GetMapping("/by-student/{studentId}")
     public List<ApplicationDTO> getApplicationsByStudent(@PathVariable long studentId) {
-        return this.applicationService.getApplicationByStudentId(studentId);
+        try {
+            return this.applicationService.getApplicationByStudentId(studentId);
+        } catch (ApplicationNotFoundException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Application with such studentId Not Found", exception);
+        }
     }
 
     @GetMapping("/all")
@@ -64,11 +75,19 @@ public class ApplicationController {
 
     @PutMapping("/update/{id}")
     public ApplicationDTO updateApplication(@PathVariable long id, @RequestBody ApplicationDTO applicationDTO) {
-        return this.applicationService.updateApplication(applicationDTO, id);
+        try {
+            return this.applicationService.updateApplication(applicationDTO, id);
+        } catch (ApplicationNotFoundException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Application to be updated Not Found", exception);
+        }
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteApplication(@PathVariable long id) {
-        this.applicationService.deleteApplication(id);
+        try {
+            this.applicationService.deleteApplication(id);
+        } catch (ApplicationNotFoundException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Application to be deleted Not Found", exception);
+        }
     }
 }

@@ -6,10 +6,13 @@ import com.project.diplomation.data.models.dto.DefenseDTO;
 import com.project.diplomation.data.models.dto.ReviewDTO;
 import com.project.diplomation.data.models.entities.Defense;
 import com.project.diplomation.data.models.entities.Review;
+import com.project.diplomation.exception.DefenseNotFoundException;
 import com.project.diplomation.service.DefenseService;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -27,7 +30,11 @@ public class DefenseController {
 
     @GetMapping("/{id}")
     public DefenseDTO getDefense(@PathVariable long id){
-        return this.defenseService.getDefense(id);
+        try {
+            return this.defenseService.getDefense(id);
+        } catch (DefenseNotFoundException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Defense Not Found", exception);
+        }
     }
 
     @GetMapping("/all")
@@ -37,6 +44,11 @@ public class DefenseController {
 
     @DeleteMapping("/delete/{id}")
     public void deleteDefense(@PathVariable long id) {
-        this.defenseService.deleteDefense(id);
+        try {
+            this.defenseService.deleteDefense(id);
+        } catch (DefenseNotFoundException exception) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Defense Not Found", exception);
+        }
     }
 }

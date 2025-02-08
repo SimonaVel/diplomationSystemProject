@@ -6,11 +6,14 @@ import com.project.diplomation.data.models.dto.ReviewDTO;
 import com.project.diplomation.data.models.entities.Review;
 import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.StudentDTO;
+import com.project.diplomation.exception.ReviewNotFoundException;
 import com.project.diplomation.service.ReviewService;
 import com.project.diplomation.service.StudentService;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -28,7 +31,11 @@ public class ReviewController {
 
     @GetMapping("/{id}")
     public ReviewDTO getReview(@PathVariable long id){
-        return this.reviewService.getReview(id);
+        try {
+            return this.reviewService.getReview(id);
+        } catch (ReviewNotFoundException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Review Not Found", exception);
+        }
     }
 
     @GetMapping("/all")
@@ -38,6 +45,11 @@ public class ReviewController {
 
     @DeleteMapping("/delete/{id}")
     public void deleteReview(@PathVariable long id) {
-        this.reviewService.deleteReview(id);
+        try {
+            this.reviewService.deleteReview(id);
+        } catch (ReviewNotFoundException exception) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Review to be deleted Not Found", exception);
+        }
     }
 }

@@ -11,11 +11,14 @@ import com.project.diplomation.data.models.entities.UniversityTutor;
 import com.project.diplomation.data.repositories.ApplicationRepo;
 import com.project.diplomation.data.repositories.StudentRepo;
 import com.project.diplomation.data.repositories.UniversityTutorRepo;
+import com.project.diplomation.exception.ThesisNotFoundException;
 import com.project.diplomation.service.ApplicationService;
 import com.project.diplomation.service.ThesisService;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -46,7 +49,11 @@ public class ThesisController {
 
     @GetMapping("/{id}")
     public ThesisDTO getThesis(@PathVariable long id){
-        return this.thesisService.getThesis(id);
+        try {
+            return this.thesisService.getThesis(id);
+        } catch (ThesisNotFoundException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Thesis Not Found", exception);
+        }
     }
 
     @GetMapping("/all")
@@ -56,11 +63,21 @@ public class ThesisController {
 
     @PutMapping("/update/{id}")
     public ThesisDTO updateThesis(@PathVariable long id, @RequestBody ThesisDTO thesisDTO) {
-        return this.thesisService.updateThesis(thesisDTO, id);
+        try {
+            return this.thesisService.updateThesis(thesisDTO, id);
+        } catch (ThesisNotFoundException exception) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Thesis Not Found", exception);
+        }
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteThesis(@PathVariable long id) {
-        this.thesisService.deleteThesis(id);
+        try {
+            this.thesisService.deleteThesis(id);
+        } catch (ThesisNotFoundException exception) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Thesis Not Found", exception);
+        }
     }
 }
