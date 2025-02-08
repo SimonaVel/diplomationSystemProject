@@ -5,6 +5,7 @@ import com.project.diplomation.data.models.dto.UniversityTutorDTO;
 import com.project.diplomation.data.models.entities.UniversityTutor;
 import com.project.diplomation.data.models.enums.PositionType;
 import com.project.diplomation.data.repositories.UniversityTutorRepo;
+import com.project.diplomation.exception.UniversityTutorNotFoundException;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class UniversityTutorService {
     public UniversityTutorDTO getUniversityTutor(long id) {
         return this.mapperUtil.getModelMapper()
                 .map(this.universityTutorRepo.findById(id)
-                                .orElseThrow(() -> new RuntimeException("University tutor with id=" + id + " not found!")),
+                                .orElseThrow(() -> new UniversityTutorNotFoundException("University tutor with id=" + id + " not found!")),
                         UniversityTutorDTO.class);
     }
     public List<UniversityTutorDTO> getUniversityTutorByName(String name) {
@@ -54,7 +55,7 @@ public class UniversityTutorService {
                     tutor.setPositionType(universityTutor.getPositionType() == null ? tutor.getPositionType() : universityTutor.getPositionType());
                     return this.universityTutorRepo.save(tutor);
                 })
-                .orElseThrow(() -> new RuntimeException("UniTutor with id= " + id + " not found!"));
+                .orElseThrow(() -> new UniversityTutorNotFoundException("UniTutor with id= " + id + " not found!"));
     }
 
     public void deleteUniTutor(long id) {

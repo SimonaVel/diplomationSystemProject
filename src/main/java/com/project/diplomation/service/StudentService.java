@@ -4,6 +4,7 @@ import com.project.diplomation.data.models.dto.CreateStudentDTO;
 import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.StudentDTO;
 import com.project.diplomation.data.repositories.StudentRepo;
+import com.project.diplomation.exception.StudentNotFoundException;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,14 +28,11 @@ public class StudentService {
     public StudentDTO getStudent(long id) {
         return this.mapperUtil.getModelMapper()
             .map(this.studentRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Student with id=" + id + " not found!")),
+                .orElseThrow(() -> new StudentNotFoundException("Student with id=" + id + " not found!")),
                     StudentDTO.class);
     }
 
-//    public Student getStudent(long id) {
-//        return studentRepo.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Student with id=" + id + " not found!"));
-//    }
+
 
     public List<StudentDTO> getStudentByName(String name) {
         return this.mapperUtil
@@ -51,13 +49,6 @@ public class StudentService {
                 .mapList(
                         this.studentRepo.findAll(), StudentDTO.class);
     }
-//    public void updateStudent(Student student, long id) {
-//        Student studentToUpdate = this.studentRepo.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Student with id= " + id + " not found!"));
-//        studentToUpdate.setName(student.getName());
-//        studentToUpdate.setFNumber(student.getFNumber());
-//        this.studentRepo.save(studentToUpdate);
-//    }
 
     public Student updateStudent(Student student, long id) {
 //        student == json Entity
@@ -70,7 +61,7 @@ public class StudentService {
                 return this.studentRepo.save(student1);
             })
 //                // if the student with the given id is not found, throw an exception
-                .orElseThrow(() -> new RuntimeException("Student with id= " + id + " not found!"));
+                .orElseThrow(() -> new StudentNotFoundException("Student with id= " + id + " not found!"));
 //                // if the student with the given id is not found, create a new student
 //                .orElseGet(() -> this.studentRepo.save(student));
     }

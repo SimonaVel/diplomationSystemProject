@@ -66,7 +66,11 @@ public class ApplicationService {
     }
 
     public void deleteApplication(long id) {
-        this.applicationRepo.deleteById(id);
+        try {
+            this.applicationRepo.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Application with id=" + id + " could not be deleted!");
+        }
     }
 
 }

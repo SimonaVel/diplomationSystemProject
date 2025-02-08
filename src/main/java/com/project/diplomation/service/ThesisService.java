@@ -5,6 +5,7 @@ import com.project.diplomation.data.models.dto.ThesisDTO;
 import com.project.diplomation.data.models.entities.Thesis;
 import com.project.diplomation.data.repositories.ApplicationRepo;
 import com.project.diplomation.data.repositories.ThesisRepo;
+import com.project.diplomation.exception.ThesisNotFoundException;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class ThesisService {
     public ThesisDTO getThesis(long id) {
         return this.mapperUtil.getModelMapper()
             .map(this.thesisRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Thesis with id=" + id + " not found!")),
+                .orElseThrow(() -> new ThesisNotFoundException("Thesis with id=" + id + " not found!")),
                     ThesisDTO.class);
     }
 
@@ -53,7 +54,7 @@ public class ThesisService {
                     return this.mapperUtil.getModelMapper()
                         .map(this.thesisRepo.save(thesis), ThesisDTO.class);
                 })
-                .orElseThrow(() -> new RuntimeException("Thesis with id=" + id + " not found!"));
+                .orElseThrow(() -> new ThesisNotFoundException("Thesis with id=" + id + " not found!"));
     }
 
 }
