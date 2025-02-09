@@ -57,4 +57,9 @@ public class ThesisService {
                 .orElseThrow(() -> new ThesisNotFoundException("Thesis with id=" + id + " not found!"));
     }
 
+    public List<ThesisDTO> getThesesByTitle(String title) {
+        return this.mapperUtil
+                .mapList(
+                        this.thesisRepo.findByTitleContaining(title), ThesisDTO.class);
+    }
 }

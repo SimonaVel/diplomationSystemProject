@@ -80,4 +80,9 @@ public class ThesisController {
                     HttpStatus.NOT_FOUND, "Thesis Not Found", exception);
         }
     }
+
+    @GetMapping("/by-title/{title}")
+    public List<ThesisDTO> getThesesByTitle(@PathVariable String title) {
+        return this.thesisService.getThesesByTitle(title);
+    }
 }

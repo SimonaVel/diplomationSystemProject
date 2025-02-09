@@ -105,4 +105,12 @@ public class ThesisViewController {
                 .createThesisDTO(thesis);
         return "redirect:/theses";
     }
+
+    @GetMapping("/by-title")
+    public String getThesesByTitle(@RequestParam("title") String title, Model model) {
+        List<ThesisViewModel> theses = mapperUtil
+                .mapList(this.thesisService.getThesesByTitle(title), ThesisViewModel.class);
+        model.addAttribute("theses", theses);
+        return "theses/theses";
+    }
 }
