@@ -59,6 +59,12 @@ public class ApplicationViewController {
 
         List<ApplicationStatus> statuses = Arrays.asList(ApplicationStatus.values());
         model.addAttribute("statuses", statuses);
+
+        List<Long> tutorIds = universityTutorService.getAllUniversityTutors()
+                .stream()
+                .map(UniversityTutorDTO::getId)
+                .toList();
+        model.addAttribute("tutorIds", tutorIds);
         // returns the name of the template page(view) to be rendered
         return "applications/applications";
     }
@@ -143,8 +149,49 @@ public class ApplicationViewController {
 
         List<ApplicationStatus> statuses = Arrays.asList(ApplicationStatus.values());
         model.addAttribute("statuses", statuses);
-        model.addAttribute("selectedStatus", status);  // Keep track of the selected status
+
+        List<Long> tutorIds = universityTutorService.getAllUniversityTutors()
+                .stream()
+                .map(UniversityTutorDTO::getId)
+                .toList();
+        model.addAttribute("tutorIds", tutorIds);
 
         return "applications/applications";
     }
+
+    @GetMapping("/by-tutor")
+    String filterApplicationsByTutor(@RequestParam("tutorId") long tutorId, Model model) {
+        List<ApplicationViewModel> filteredApplications = mapperUtil
+                .mapList(this.applicationService.getApplicationsByTutor(tutorId), ApplicationViewModel.class);
+        model.addAttribute("applications", filteredApplications);
+
+        List<ApplicationStatus> statuses = Arrays.asList(ApplicationStatus.values());
+        model.addAttribute("statuses", statuses);
+
+        List<Long> tutorIds = universityTutorService.getAllUniversityTutors()
+                .stream()
+                .map(UniversityTutorDTO::getId)
+                .toList();
+        model.addAttribute("tutorIds", tutorIds);
+
+        return "applications/applications";
+    }
+
+//    @GetMapping("view/by-tutor-and-status")
+//    String filterApplicationsByTutorAndStatus(@RequestParam("tutorId") long tutorId, @RequestParam("status") ApplicationStatus status, Model model) {
+//        List<ApplicationViewModel> filteredApplications = mapperUtil
+//                .mapList(this.applicationService.getApplicationsByTutorAndStatus(tutorId, status), ApplicationViewModel.class);
+//        model.addAttribute("applications", filteredApplications);
+//
+//        List<ApplicationStatus> statuses = Arrays.asList(ApplicationStatus.values());
+//        model.addAttribute("statuses", statuses);
+//
+//        List<Long> tutorIds = universityTutorService.getAllUniversityTutors()
+//                .stream()
+//                .map(UniversityTutorDTO::getId)
+//                .toList();
+//        model.addAttribute("tutorIds", tutorIds);
+//
+//        return "applications/applications";
+//    }
 }

@@ -80,4 +80,15 @@ public class ApplicationService {
                         this.applicationRepo.findByStatus(status), ApplicationDTO.class);
     }
 
+    public List<ApplicationDTO> getApplicationsByTutor(long tutorId) {
+        return this.mapperUtil
+                .mapList(
+                        this.applicationRepo.findByTutor(tutorRepo.getById(tutorId)), ApplicationDTO.class);
+    }
+
+    public List<ApplicationDTO> getApplicationsByTutorAndStatus(long tutorId, ApplicationStatus status) {
+        return this.mapperUtil
+                .mapList(
+                        this.applicationRepo.findApplicationsByTutorAndStatus(tutorRepo.getById(tutorId), status), ApplicationDTO.class);
+    }
 }

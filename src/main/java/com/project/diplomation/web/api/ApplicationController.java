@@ -96,4 +96,14 @@ public class ApplicationController {
     public List<ApplicationDTO> getApplicationsByStatus(@PathVariable ApplicationStatus status) {
         return this.applicationService.getApplicationsByStatus(status);
     }
+
+    @GetMapping("/by-tutor/{tutorId}")
+    public List<ApplicationDTO> getApplicationsByTutor(@PathVariable long tutorId) {
+        return this.applicationService.getApplicationsByTutor(tutorId);
+    }
+
+    @GetMapping("/by-tutor-and-status/{tutorId}/{status}")
+    public List<ApplicationDTO> getApplicationsByTutorAndStatus(@PathVariable long tutorId, @PathVariable ApplicationStatus status) {
+        return this.applicationService.getApplicationsByTutorAndStatus(tutorId, status);
+    }
 }
