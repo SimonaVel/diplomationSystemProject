@@ -8,6 +8,18 @@
 <div th:replace="~{fragments :: header-nav}"></div>
 <h3 th:unless="${applications} and ${applications.size()}">There are no applications!</h3>
 <button class="btn btn-outline-primary"><a th:href="@{'/applications/create'}">Create application</a></button>
+
+<form th:action="@{/applications/by-status}" method="get">
+    <label for="status">Status:</label>
+    <select id="status" name="status">
+        <option th:each="status : ${statuses}"
+                th:value="${status}"
+                th:text="${status}">
+        </option>
+    </select>
+    <button class="btn btn-outline-primary" type="submit">Filter</button>
+</form>
+
 <table class="table table-primary table-striped table-hover table-bordered border-danger-subtle">
         <thead>
             <tr>

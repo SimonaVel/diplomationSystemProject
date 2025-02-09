@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -97,7 +98,7 @@ public class ThesisViewController {
         Thesis thesis = new Thesis();
         thesis.setTitle(thesisDTO.getTitle());
         thesis.setText(thesisDTO.getText());
-        thesis.setDateOfSubmission(thesisDTO.getDateOfSubmission());
+        thesis.setDateOfSubmission(thesisDTO.getDateOfSubmission() == null ? LocalDate.now() : thesisDTO.getDateOfSubmission());
         thesis.setApplication(application);
 
         this.thesisService

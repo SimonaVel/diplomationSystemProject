@@ -1,6 +1,7 @@
 package com.project.diplomation.data.models.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.diplomation.data.models.enums.ApplicationStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -33,6 +34,7 @@ public class Application extends BaseEntity {
     private UniversityTutor tutor;
 //    @NotNull
     @OneToOne(mappedBy = "application", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Thesis thesis;
     public Application() {}
 }

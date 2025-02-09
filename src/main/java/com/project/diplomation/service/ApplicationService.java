@@ -3,6 +3,7 @@ package com.project.diplomation.service;
 import com.project.diplomation.data.models.dto.ApplicationDTO;
 import com.project.diplomation.data.models.dto.CreateApplicationDTO;
 import com.project.diplomation.data.models.entities.Application;
+import com.project.diplomation.data.models.enums.ApplicationStatus;
 import com.project.diplomation.data.repositories.ApplicationRepo;
 import com.project.diplomation.data.repositories.StudentRepo;
 import com.project.diplomation.data.repositories.UniversityTutorRepo;
@@ -71,6 +72,12 @@ public class ApplicationService {
         } catch (Exception e) {
             throw new RuntimeException("Application with id=" + id + " could not be deleted!");
         }
+    }
+
+    public List<ApplicationDTO> getApplicationsByStatus(ApplicationStatus status) {
+        return this.mapperUtil
+                .mapList(
+                        this.applicationRepo.findByStatus(status), ApplicationDTO.class);
     }
 
 }

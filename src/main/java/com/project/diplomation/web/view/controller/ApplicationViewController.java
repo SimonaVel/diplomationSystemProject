@@ -56,6 +56,9 @@ public class ApplicationViewController {
         List<ApplicationViewModel> applications = mapperUtil
                 .mapList(this.applicationService.getAllApplications(), ApplicationViewModel.class);
         model.addAttribute("applications", applications);
+
+        List<ApplicationStatus> statuses = Arrays.asList(ApplicationStatus.values());
+        model.addAttribute("statuses", statuses);
         // returns the name of the template page(view) to be rendered
         return "applications/applications";
     }
@@ -131,5 +134,17 @@ public class ApplicationViewController {
         this.applicationService
                 .createApplicationDTO(application);
         return "redirect:/applications";
+    }
+    @GetMapping("/by-status")
+    String filterApplicationsByStatus(@RequestParam("status") ApplicationStatus status, Model model) {
+        List<ApplicationViewModel> filteredApplications = mapperUtil
+                .mapList(this.applicationService.getApplicationsByStatus(status), ApplicationViewModel.class);
+        model.addAttribute("applications", filteredApplications);
+
+        List<ApplicationStatus> statuses = Arrays.asList(ApplicationStatus.values());
+        model.addAttribute("statuses", statuses);
+        model.addAttribute("selectedStatus", status);  // Keep track of the selected status
+
+        return "applications/applications";
     }
 }

@@ -5,6 +5,7 @@ import com.project.diplomation.data.models.dto.CreateApplicationDTO;
 import com.project.diplomation.data.models.entities.Application;
 import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.UniversityTutor;
+import com.project.diplomation.data.models.enums.ApplicationStatus;
 import com.project.diplomation.data.repositories.StudentRepo;
 import com.project.diplomation.data.repositories.UniversityTutorRepo;
 import com.project.diplomation.exception.ApplicationNotFoundException;
@@ -89,5 +90,10 @@ public class ApplicationController {
         } catch (ApplicationNotFoundException exception) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Application to be deleted Not Found", exception);
         }
+    }
+
+    @GetMapping("/by-status/{status}")
+    public List<ApplicationDTO> getApplicationsByStatus(@PathVariable ApplicationStatus status) {
+        return this.applicationService.getApplicationsByStatus(status);
     }
 }

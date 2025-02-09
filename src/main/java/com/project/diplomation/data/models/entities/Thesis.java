@@ -1,5 +1,6 @@
 package com.project.diplomation.data.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class Thesis extends BaseEntity {
     private Application application;
 
     @OneToOne(mappedBy = "thesis")
+    @JsonIgnore
     private Review review;
 
     public Thesis() {}
