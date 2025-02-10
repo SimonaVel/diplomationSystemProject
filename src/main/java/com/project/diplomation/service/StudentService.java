@@ -1,6 +1,8 @@
 package com.project.diplomation.service;
 
-import com.project.diplomation.data.models.dto.CreateStudentDTO;
+import com.project.diplomation.data.models.dto.*;
+import com.project.diplomation.data.models.entities.Application;
+import com.project.diplomation.data.models.entities.Defense;
 import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.StudentDTO;
 import com.project.diplomation.data.repositories.StudentRepo;
@@ -9,13 +11,19 @@ import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class StudentService {
     private final StudentRepo studentRepo;
     private final MapperUtil mapperUtil;
+    private final DefenseService defenseService;
+    private final ReviewService reviewService;
+    private final ThesisService thesisService;
+    private final ApplicationService applicationService;
 
     public CreateStudentDTO createStudentDTO(Student student) {
         return mapperUtil.getModelMapper()
@@ -68,5 +76,26 @@ public class StudentService {
 
     public void deleteStudent(long id) {
         this.studentRepo.deleteById(id);
+    }
+
+    public List<StudentDTO> getGraduatedStudentsInPeriod(LocalDate startDate, LocalDate endDate) {
+        // 1) get all passed defenses (grade = [3, 4, 5, 6]) & filter them by date
+        List<DefenseDTO> defenses = defenseService.getDefenseByDateBetweenAndGradeBetween(startDate, endDate,3, 6);
+        // 2) get their corresponding reviews, theses & applications
+        List<ReviewDTO> reviews = defenses.stream()
+                .map(defense -> reviewService.getReview(defense.getReview_id()))
+                .collect(Collectors.toList());
+        List<ThesisDTO> theses = reviews.stream()
+                .map(review -> thesisService.getThesis(review.getThesis_id()))
+                .collect(Collectors.toList());
+        List<ApplicationDTO> applications = theses.stream()
+                .map(thesis -> applicationService.getApplication(thesis.getApplicationId()))
+                .collect(Collectors.toList());
+        // 3) get the students from the applications
+        List<StudentDTO> students = applications.stream()
+                .map(application -> this.getStudent(application.getStudentId()))
+                .collect(Collectors.toList());
+
+        return students;
     }
 }

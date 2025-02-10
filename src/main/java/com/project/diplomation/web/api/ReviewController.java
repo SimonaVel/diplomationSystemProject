@@ -52,4 +52,9 @@ public class ReviewController {
                     HttpStatus.NOT_FOUND, "Review to be deleted Not Found", exception);
         }
     }
+
+    @GetMapping("/by-thesis-id/{id}")
+    public ReviewDTO getReviewByThesisId(@PathVariable long id) {
+        return this.reviewService.getReviewByThesisId(id);
+    }
 }

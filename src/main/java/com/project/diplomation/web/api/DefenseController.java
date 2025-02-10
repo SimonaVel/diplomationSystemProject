@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -50,5 +51,29 @@ public class DefenseController {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Defense Not Found", exception);
         }
+    }
+
+    @GetMapping("/grade/{min}/{max}")
+    public List<DefenseDTO> getDefenseByGradeBetween(@PathVariable int min, @PathVariable int max) {
+        return this.defenseService.getDefenseByGradeBetween(min, max);
+    }
+
+    @GetMapping("/by-review-id/{id}")
+    public DefenseDTO getDefenseByReviewId(@PathVariable long id) {
+        return this.defenseService.getDefenseByReviewId(id);
+    }
+
+    @GetMapping("by-date-between/{start}/{end}")
+    public List<DefenseDTO> getDefenseByDateBetween(@PathVariable String start, @PathVariable String end) {
+        LocalDate startDate = LocalDate.parse(start);
+        LocalDate endDate = LocalDate.parse(end);
+        return this.defenseService.getDefensesByDateBetween(startDate, endDate);
+    }
+
+    @GetMapping("by-date-and-grade-between/{start}/{end}/{min}/{max}")
+    public List<DefenseDTO> getDefenseByDateGradeBetween(@PathVariable String start, @PathVariable String end, @PathVariable int min, @PathVariable int max) {
+        LocalDate startDate = LocalDate.parse(start);
+        LocalDate endDate = LocalDate.parse(end);
+        return this.defenseService.getDefenseByDateBetweenAndGradeBetween(startDate, endDate, min, max);
     }
 }

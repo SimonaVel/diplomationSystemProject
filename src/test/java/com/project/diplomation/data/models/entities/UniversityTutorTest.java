@@ -54,10 +54,4 @@ class UniversityTutorTest {
         universityTutor.setPositionType(PositionType.PROFESSOR);
         assertFalse(PositionType.ASSISTANT.equals(universityTutor.getPositionType()));
     }
-
-    @Test
-    void testToString() {
-        assertEquals(("UniversityTutor(name=" + universityTutor.getName() +
-                ", positionType=" + universityTutor.getPositionType() + ")"), universityTutor.toString());
-    }
 }

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -74,4 +75,11 @@ public class StudentController {
                     HttpStatus.NOT_FOUND, "Student to be deleted Not Found", exception);
         }
     }
+
+//    @GetMapping("/graduated-between/{start}/{end}")
+//    public List<StudentDTO> getStudentsGraduatedBetween(@PathVariable String start, @PathVariable String end) {
+//        LocalDate startDate = LocalDate.parse(start);
+//        LocalDate endDate = LocalDate.parse(end);
+//        return this.studentService.getGraduatedStudentsInPeriod(startDate, endDate);
+//    }
 }

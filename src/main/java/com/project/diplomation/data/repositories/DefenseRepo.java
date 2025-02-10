@@ -12,4 +12,9 @@ public interface DefenseRepo extends JpaRepository<Defense, Long> {
     Defense findByGrade(int grade);
     Defense findByReview(Review review);
     Defense findById(long id);
+    List<Defense> findDefenseByGradeBetween(int min, int max);
+    Defense findDefenseByReview_Id(long id);
+    List<Defense> findDefenseByDateBetween(LocalDate startDate, LocalDate endDate);
+    List<Defense> findDefenseByDateBetweenAndAndGradeBetween(LocalDate startDate, LocalDate endDate, int min, int max);
+
 }

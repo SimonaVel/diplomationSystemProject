@@ -11,4 +11,5 @@ import java.util.List;
 public interface ReviewRepo extends JpaRepository<Review, Long> {
     List<Review> findByReviewer(UniversityTutor reviewer);
     Review findByDateOfSubmission(LocalDate date);
+    Review findReviewByThesis_Id(long id);
 }
