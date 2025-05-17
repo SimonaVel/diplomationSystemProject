@@ -13,6 +13,6 @@ public class DefenseViewModel {
     private long id;
     private LocalDate date;
     private int grade;
-    private long review_id;
+    private long reviewId;
 }
 

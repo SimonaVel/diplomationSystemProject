@@ -24,7 +24,7 @@ public class Review extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "reviewer_id", nullable = false, columnDefinition = "BIGINT")
     private UniversityTutor reviewer;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @NotNull
     @JoinColumn(name = "thesis_id", nullable = false, columnDefinition = "BIGINT")
     private Thesis thesis;

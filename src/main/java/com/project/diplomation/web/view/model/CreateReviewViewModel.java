@@ -13,8 +13,8 @@ public class CreateReviewViewModel {
     private LocalDate dateOfSubmission;
     private String text;
     private String conclusion;
-    private long reviewer_id;
-    private long thesis_id;
+    private long reviewerId;
+    private long thesisId;
     private boolean isPassed;
 }
 

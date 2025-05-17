@@ -12,6 +12,6 @@ import java.time.LocalDate;
 public class CreateDefenseDTO {
     private LocalDate date;
     private int grade;
-    private long review_id;
+    private long reviewId;
 }
 

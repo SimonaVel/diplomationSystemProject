@@ -80,10 +80,10 @@ public class StudentService {
         List<DefenseDTO> defenses = defenseService.getDefenseByDateBetweenAndGradeBetween(startDate, endDate,3, 6);
         // 2) get their corresponding reviews, theses & applications
         List<ReviewDTO> reviews = defenses.stream()
-                .map(defense -> reviewService.getReview(defense.getReview_id()))
+                .map(defense -> reviewService.getReview(defense.getReviewId()))
                 .collect(Collectors.toList());
         List<ThesisDTO> theses = reviews.stream()
-                .map(review -> thesisService.getThesis(review.getThesis_id()))
+                .map(review -> thesisService.getThesis(review.getThesisId()))
                 .collect(Collectors.toList());
         List<ApplicationDTO> applications = theses.stream()
                 .map(thesis -> applicationService.getApplication(thesis.getApplicationId()))
