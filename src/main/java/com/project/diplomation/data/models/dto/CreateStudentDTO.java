@@ -1,14 +1,8 @@
 package com.project.diplomation.data.models.dto;
 
-import com.project.diplomation.data.models.entities.Application;
-import com.project.diplomation.data.models.entities.BaseEntity;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
-
-import java.util.HashSet;
 
 /**
  * Represents the data of a student.

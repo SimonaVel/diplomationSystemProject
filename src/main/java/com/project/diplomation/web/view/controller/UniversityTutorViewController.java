@@ -1,14 +1,10 @@
 package com.project.diplomation.web.view.controller;
 
-import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.UniversityTutor;
 import com.project.diplomation.data.models.enums.PositionType;
-import com.project.diplomation.service.StudentService;
 import com.project.diplomation.service.UniversityTutorService;
 import com.project.diplomation.util.MapperUtil;
-import com.project.diplomation.web.view.model.CreateStudentViewModel;
 import com.project.diplomation.web.view.model.CreateUniversityTutorViewModel;
-import com.project.diplomation.web.view.model.StudentViewModel;
 import com.project.diplomation.web.view.model.UniversityTutorViewModel;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

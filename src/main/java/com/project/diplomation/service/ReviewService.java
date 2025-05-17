@@ -1,16 +1,8 @@
 package com.project.diplomation.service;
 
-import com.project.diplomation.data.models.dto.ApplicationDTO;
-import com.project.diplomation.data.models.dto.CreateApplicationDTO;
-import com.project.diplomation.data.models.dto.CreateReviewDTO;
 import com.project.diplomation.data.models.dto.ReviewDTO;
-import com.project.diplomation.data.models.entities.Application;
 import com.project.diplomation.data.models.entities.Review;
-import com.project.diplomation.data.repositories.ApplicationRepo;
 import com.project.diplomation.data.repositories.ReviewRepo;
-import com.project.diplomation.data.repositories.StudentRepo;
-import com.project.diplomation.data.repositories.UniversityTutorRepo;
-import com.project.diplomation.exception.ReviewNotFoundException;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,7 +26,7 @@ public class ReviewService {
 
     public ReviewDTO getReview(long id) {
         Optional<Review> review = reviewRepo.findById(id);
-        ReviewDTO reviewDTO = new ReviewDTO(
+        return new ReviewDTO(
                 review.get().getId(),
                 review.get().getDateOfSubmission(),
                 review.get().getText(),
@@ -42,13 +34,12 @@ public class ReviewService {
                 review.get().getReviewer().getId(),
                 review.get().getThesis().getId(),
                 review.get().isPassed());
-        return reviewDTO;
     }
 
     public List<ReviewDTO> getAllReviews() {
         List<Review> reviews = this.reviewRepo.findAll();
         ReviewDTO reviewDTO = new ReviewDTO();
-        List<ReviewDTO> reviewDTOS = new ArrayList<ReviewDTO>();
+        List<ReviewDTO> reviewDTOS = new ArrayList<>();
         for (Review review : reviews) {
             reviewDTOS.add(reviewDTO.mapReviewToDTO(review));
         }

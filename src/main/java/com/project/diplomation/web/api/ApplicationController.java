@@ -10,8 +10,6 @@ import com.project.diplomation.data.repositories.StudentRepo;
 import com.project.diplomation.data.repositories.UniversityTutorRepo;
 import com.project.diplomation.exception.ApplicationNotFoundException;
 import com.project.diplomation.service.ApplicationService;
-import com.project.diplomation.service.StudentService;
-import com.project.diplomation.service.UniversityTutorService;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

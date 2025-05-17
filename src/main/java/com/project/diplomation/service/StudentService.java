@@ -1,10 +1,7 @@
 package com.project.diplomation.service;
 
 import com.project.diplomation.data.models.dto.*;
-import com.project.diplomation.data.models.entities.Application;
-import com.project.diplomation.data.models.entities.Defense;
 import com.project.diplomation.data.models.entities.Student;
-import com.project.diplomation.data.models.dto.StudentDTO;
 import com.project.diplomation.data.repositories.StudentRepo;
 import com.project.diplomation.exception.StudentNotFoundException;
 import com.project.diplomation.util.MapperUtil;

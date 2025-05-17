@@ -1,7 +1,5 @@
 package com.project.diplomation.data.models.dto;
 
-import com.project.diplomation.data.models.entities.Application;
-
 import lombok.*;
 
 import java.time.LocalDate;

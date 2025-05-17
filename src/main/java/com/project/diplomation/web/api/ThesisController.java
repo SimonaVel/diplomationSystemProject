@@ -1,18 +1,11 @@
 package com.project.diplomation.web.api;
 
-import com.project.diplomation.data.models.dto.ApplicationDTO;
-import com.project.diplomation.data.models.dto.CreateApplicationDTO;
 import com.project.diplomation.data.models.dto.CreateThesisDTO;
 import com.project.diplomation.data.models.dto.ThesisDTO;
 import com.project.diplomation.data.models.entities.Application;
-import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.Thesis;
-import com.project.diplomation.data.models.entities.UniversityTutor;
 import com.project.diplomation.data.repositories.ApplicationRepo;
-import com.project.diplomation.data.repositories.StudentRepo;
-import com.project.diplomation.data.repositories.UniversityTutorRepo;
 import com.project.diplomation.exception.ThesisNotFoundException;
-import com.project.diplomation.service.ApplicationService;
 import com.project.diplomation.service.ThesisService;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;

@@ -2,13 +2,8 @@ package com.project.diplomation.service;
 
 import com.project.diplomation.data.models.dto.CreateDefenseDTO;
 import com.project.diplomation.data.models.dto.DefenseDTO;
-import com.project.diplomation.data.models.dto.ReviewDTO;
 import com.project.diplomation.data.models.entities.Defense;
-import com.project.diplomation.data.models.entities.Review;
 import com.project.diplomation.data.repositories.DefenseRepo;
-import com.project.diplomation.data.repositories.ReviewRepo;
-import com.project.diplomation.exception.DefenseNotFoundException;
-import com.project.diplomation.exception.ReviewNotFoundException;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,6 @@
 package com.project.diplomation.web.view.controller;
 
-import com.project.diplomation.data.models.dto.CreateStudentDTO;
 import com.project.diplomation.data.models.entities.Student;
-import com.project.diplomation.data.models.dto.StudentDTO;
 import com.project.diplomation.service.StudentService;
 import com.project.diplomation.util.MapperUtil;
 import com.project.diplomation.web.view.model.CreateStudentViewModel;
@@ -14,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 @Controller
@@ -38,7 +35,7 @@ public class StudentViewController {
                 .mapList(this.studentService.getAllStudents(), StudentViewModel.class);
         model.addAttribute("students", students);
         // returns the name of the template page(view) to be rendered
-        return "students/students.html";
+        return "students/students";
     }
     @GetMapping("/delete/{id}")
     public String deleteStudent(@PathVariable long id) {

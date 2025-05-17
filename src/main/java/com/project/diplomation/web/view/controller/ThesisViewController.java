@@ -2,17 +2,10 @@ package com.project.diplomation.web.view.controller;
 
 import com.project.diplomation.data.models.dto.*;
 import com.project.diplomation.data.models.entities.*;
-import com.project.diplomation.data.models.dto.StudentDTO;
-import com.project.diplomation.data.models.enums.ApplicationStatus;
 import com.project.diplomation.data.repositories.ApplicationRepo;
-import com.project.diplomation.data.repositories.StudentRepo;
-import com.project.diplomation.data.repositories.UniversityTutorRepo;
 import com.project.diplomation.service.ApplicationService;
-import com.project.diplomation.service.StudentService;
 import com.project.diplomation.service.ThesisService;
-import com.project.diplomation.service.UniversityTutorService;
 import com.project.diplomation.util.MapperUtil;
-import com.project.diplomation.web.view.model.ApplicationViewModel;
 import com.project.diplomation.web.view.model.ThesisViewModel;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +15,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller

@@ -1,14 +1,8 @@
 package com.project.diplomation.web.api;
 
-import com.project.diplomation.data.models.dto.CreateReviewDTO;
-import com.project.diplomation.data.models.dto.CreateStudentDTO;
 import com.project.diplomation.data.models.dto.ReviewDTO;
-import com.project.diplomation.data.models.entities.Review;
-import com.project.diplomation.data.models.entities.Student;
-import com.project.diplomation.data.models.dto.StudentDTO;
 import com.project.diplomation.exception.ReviewNotFoundException;
 import com.project.diplomation.service.ReviewService;
-import com.project.diplomation.service.StudentService;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

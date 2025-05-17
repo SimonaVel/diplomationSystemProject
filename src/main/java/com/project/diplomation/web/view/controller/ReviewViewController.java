@@ -1,24 +1,12 @@
 package com.project.diplomation.web.view.controller;
 
-import com.project.diplomation.data.models.dto.ApplicationDTO;
-import com.project.diplomation.data.models.dto.CreateThesisDTO;
-import com.project.diplomation.data.models.dto.ThesisDTO;
-import com.project.diplomation.data.models.entities.Application;
-import com.project.diplomation.data.models.entities.Thesis;
-import com.project.diplomation.data.repositories.ApplicationRepo;
-import com.project.diplomation.service.ApplicationService;
 import com.project.diplomation.service.ReviewService;
 import com.project.diplomation.util.MapperUtil;
 import com.project.diplomation.web.view.model.ReviewViewModel;
-import com.project.diplomation.web.view.model.ThesisViewModel;
-import jakarta.validation.Valid;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

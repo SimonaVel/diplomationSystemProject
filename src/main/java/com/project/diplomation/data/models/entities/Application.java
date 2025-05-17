@@ -4,14 +4,10 @@ package com.project.diplomation.data.models.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.diplomation.data.models.enums.ApplicationStatus;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.util.HashSet;
 
 @Entity
 @Getter

@@ -1,11 +1,6 @@
 package com.project.diplomation.web.api;
 
-import com.project.diplomation.data.models.dto.CreateDefenseDTO;
-import com.project.diplomation.data.models.dto.CreateReviewDTO;
 import com.project.diplomation.data.models.dto.DefenseDTO;
-import com.project.diplomation.data.models.dto.ReviewDTO;
-import com.project.diplomation.data.models.entities.Defense;
-import com.project.diplomation.data.models.entities.Review;
 import com.project.diplomation.exception.DefenseNotFoundException;
 import com.project.diplomation.service.DefenseService;
 import com.project.diplomation.util.MapperUtil;

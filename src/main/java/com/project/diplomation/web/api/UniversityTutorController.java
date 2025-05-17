@@ -1,13 +1,10 @@
 package com.project.diplomation.web.api;
 
-import com.project.diplomation.data.models.dto.CreateStudentDTO;
 import com.project.diplomation.data.models.dto.CreateUniversityTutorDTO;
 import com.project.diplomation.data.models.dto.UniversityTutorDTO;
-import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.UniversityTutor;
 import com.project.diplomation.data.models.enums.PositionType;
 import com.project.diplomation.exception.UniversityTutorNotFoundException;
-import com.project.diplomation.service.StudentService;
 import com.project.diplomation.service.UniversityTutorService;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;

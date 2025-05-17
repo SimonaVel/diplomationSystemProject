@@ -1,10 +1,8 @@
 package com.project.diplomation.web.view.controller;
 
 import com.project.diplomation.service.DefenseService;
-import com.project.diplomation.service.ReviewService;
 import com.project.diplomation.util.MapperUtil;
 import com.project.diplomation.web.view.model.DefenseViewModel;
-import com.project.diplomation.web.view.model.ReviewViewModel;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

@@ -1,7 +1,6 @@
 package com.project.diplomation.data.repositories;
 
 import com.project.diplomation.data.models.entities.Review;
-import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.models.entities.UniversityTutor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
