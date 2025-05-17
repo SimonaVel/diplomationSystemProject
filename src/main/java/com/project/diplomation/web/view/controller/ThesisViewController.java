@@ -2,7 +2,7 @@ package com.project.diplomation.web.view.controller;
 
 import com.project.diplomation.data.models.dto.*;
 import com.project.diplomation.data.models.entities.*;
-import com.project.diplomation.data.models.entities.StudentDTO;
+import com.project.diplomation.data.models.dto.StudentDTO;
 import com.project.diplomation.data.models.enums.ApplicationStatus;
 import com.project.diplomation.data.repositories.ApplicationRepo;
 import com.project.diplomation.data.repositories.StudentRepo;

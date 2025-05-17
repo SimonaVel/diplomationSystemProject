@@ -5,7 +5,7 @@ import com.project.diplomation.data.models.dto.CreateApplicationDTO;
 import com.project.diplomation.data.models.dto.UniversityTutorDTO;
 import com.project.diplomation.data.models.entities.Application;
 import com.project.diplomation.data.models.entities.Student;
-import com.project.diplomation.data.models.entities.StudentDTO;
+import com.project.diplomation.data.models.dto.StudentDTO;
 import com.project.diplomation.data.models.entities.UniversityTutor;
 import com.project.diplomation.data.models.enums.ApplicationStatus;
 import com.project.diplomation.data.models.enums.PositionType;

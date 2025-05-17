@@ -1,5 +1,6 @@
 package com.project.diplomation.data.models.dto;
 
+import com.project.diplomation.data.models.entities.Review;
 import com.project.diplomation.data.models.entities.Thesis;
 import com.project.diplomation.data.models.entities.UniversityTutor;
 import jakarta.persistence.Column;
@@ -26,5 +27,18 @@ public class ReviewDTO {
     private long reviewer_id;
     private long thesis_id;
     private boolean isPassed;
+
+    public ReviewDTO mapReviewToDTO (Review review) {
+        ReviewDTO reviewDTO = new ReviewDTO(
+                review.getId(),
+                review.getDateOfSubmission(),
+                review.getText(),
+                review.getConclusion(),
+                review.getReviewer().getId(),
+                review.getThesis().getId(),
+                review.isPassed());
+        return reviewDTO;
+    }
+
 }
 

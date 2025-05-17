@@ -15,46 +15,56 @@ import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ReviewService {
     private final ReviewRepo reviewRepo;
     private final MapperUtil mapperUtil;
-
-    public CreateReviewDTO createReviewDTO(Review review) {
-        return mapperUtil.getModelMapper()
-                .map(this.reviewRepo
-                        .save(mapperUtil.getModelMapper()
-                                .map(review, Review.class)), CreateReviewDTO.class);
-
-    }
+//    public CreateReviewDTO createReviewDTO(Review review) {
+//        return mapperUtil.getModelMapper()
+//                .map(this.reviewRepo
+//                        .save(mapperUtil.getModelMapper()
+//                                .map(review, Review.class)), CreateReviewDTO.class);
+//
+//    }
 
     public ReviewDTO getReview(long id) {
-        return this.mapperUtil.getModelMapper()
-            .map(this.reviewRepo.findById(id)
-                .orElseThrow(() -> new ReviewNotFoundException("Review with id=" + id + " not found!")),
-                    ReviewDTO.class);
+        Optional<Review> review = reviewRepo.findById(id);
+        ReviewDTO reviewDTO = new ReviewDTO(
+                review.get().getId(),
+                review.get().getDateOfSubmission(),
+                review.get().getText(),
+                review.get().getConclusion(),
+                review.get().getReviewer().getId(),
+                review.get().getThesis().getId(),
+                review.get().isPassed());
+        return reviewDTO;
     }
-
 
     public List<ReviewDTO> getAllReviews() {
-        return this.mapperUtil
-                .mapList(
-                        this.reviewRepo.findAll(), ReviewDTO.class);
-    }
-
-    public void deleteReview(long id) {
-        try {
-            this.reviewRepo.deleteById(id);
-        } catch (Exception e) {
-            throw new ReviewNotFoundException("Review with id=" + id + " could not be deleted!");
+        List<Review> reviews = this.reviewRepo.findAll();
+        ReviewDTO reviewDTO = new ReviewDTO();
+        List<ReviewDTO> reviewDTOS = new ArrayList<ReviewDTO>();
+        for (Review review : reviews) {
+            reviewDTOS.add(reviewDTO.mapReviewToDTO(review));
         }
+        return reviewDTOS;
     }
 
-    public ReviewDTO getReviewByThesisId(long id) {
-        return this.mapperUtil.getModelMapper()
-                .map(this.reviewRepo.findReviewByThesis_Id(id), ReviewDTO.class);
-    }
+//    public void deleteReview(long id) {
+//        try {
+//            this.reviewRepo.deleteById(id);
+//        } catch (Exception e) {
+//            throw new ReviewNotFoundException("Review with id=" + id + " could not be deleted!");
+//        }
+//    }
+
+//    public ReviewDTO getReviewByThesisId(long id) {
+//        return this.mapperUtil.getModelMapper()
+//                .map(this.reviewRepo.findReviewByThesis_Id(id), ReviewDTO.class);
+//    }
 }

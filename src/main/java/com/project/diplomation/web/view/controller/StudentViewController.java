@@ -2,7 +2,7 @@ package com.project.diplomation.web.view.controller;
 
 import com.project.diplomation.data.models.dto.CreateStudentDTO;
 import com.project.diplomation.data.models.entities.Student;
-import com.project.diplomation.data.models.entities.StudentDTO;
+import com.project.diplomation.data.models.dto.StudentDTO;
 import com.project.diplomation.service.StudentService;
 import com.project.diplomation.util.MapperUtil;
 import com.project.diplomation.web.view.model.CreateStudentViewModel;
