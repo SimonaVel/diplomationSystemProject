@@ -1,6 +1,9 @@
 package com.project.diplomation.web.view.controller;
 
+import com.project.diplomation.data.models.dto.*;
 import com.project.diplomation.service.ReviewService;
+import com.project.diplomation.service.ThesisService;
+import com.project.diplomation.service.UniversityTutorService;
 import com.project.diplomation.util.MapperUtil;
 import com.project.diplomation.web.view.model.ReviewViewModel;
 import lombok.Data;
@@ -18,6 +21,8 @@ import java.util.List;
 public class ReviewViewController {
     private final MapperUtil mapperUtil;
     private final ReviewService reviewService;
+    private final UniversityTutorService universityTutorService;
+    private final ThesisService thesisService;
 
     @GetMapping("/view/{id}")
     public String getReviewView(Model model, @PathVariable long id) {
@@ -35,5 +40,30 @@ public class ReviewViewController {
                 .mapList(this.reviewService.getAllReviews(), ReviewViewModel.class);
         model.addAttribute("reviews", reviews);
         return "reviews/reviews";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteReview(@PathVariable long id) {
+        this.reviewService.deleteReview(id);
+        return "redirect:/reviews";
+    }
+
+    @GetMapping("/create")
+    public String showCreateReviewForm(Model model) {
+        model.addAttribute("review", new CreateReviewDTO());
+
+        List<Long> reviewerIds = universityTutorService.getAllUniversityTutors()
+                .stream()
+                .map(UniversityTutorDTO::getId)
+                .toList();
+        model.addAttribute("reviewerIds", reviewerIds);
+
+        List<Long> thesisIds = thesisService.getAllTheses()
+                .stream()
+                .map(ThesisDTO::getId)
+                .toList();
+        model.addAttribute("thesisIds", thesisIds);
+
+        return "/reviews/create";
     }
 }

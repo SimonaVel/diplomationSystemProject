@@ -14,7 +14,8 @@
                 <th scope="col">id</th>
                 <th scope="col">Date of submission</th>
                 <th scope="col">Text</th>
-<!--                <th scope="col">Reviewer Id</th>-->
+                <th scope="col">Reviewer Id</th>
+                <th scope="col">Thesis Id</th>
                 <th scope="col">Passed?</th>
 
                 <th scope="col"></th>
@@ -26,7 +27,8 @@
                 <td th:text="${review.id}"></td>
                 <td th:text="${review.dateOfSubmission}"></td>
                 <td th:text="${review.text}"></td>
-<!--                <td th:text="${review.reviewerId}"></td>-->
+                <td th:text="${review.reviewerId}"></td>
+                <td th:text="${review.thesisId}"></td>
                 <td th:text="${review.passed}"></td>
 
                 <td><a class="btn btn-info" th:href="@{'/reviews/edit/'+${review.id}}">Edit</a></td>

@@ -56,11 +56,7 @@ public class ReviewService {
     }
 
     public void deleteReview(long id) {
-        try {
-            this.reviewRepo.deleteById(id);
-        } catch (Exception e) {
-            throw new ReviewNotFoundException("Review with id=" + id + " could not be deleted!");
-        }
+        this.reviewRepo.deleteById(id);
     }
 
     public ReviewDTO getReviewByThesisId(long id) {
