@@ -38,7 +38,6 @@ public class StudentService {
     }
 
 
-
     public List<StudentDTO> getStudentByName(String name) {
         return this.mapperUtil
                 .mapList(

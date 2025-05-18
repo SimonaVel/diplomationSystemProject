@@ -1,5 +1,6 @@
 package com.project.diplomation.data.models.dto;
 
+import com.project.diplomation.data.models.entities.Review;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -16,5 +17,16 @@ public class CreateReviewDTO {
     private long reviewerId;
     private long thesisId;
     private boolean isPassed;
+
+    public CreateReviewDTO mapReviewToCreateDTO (Review review) {
+        CreateReviewDTO reviewDTO = new CreateReviewDTO(
+                review.getDateOfSubmission(),
+                review.getText(),
+                review.getConclusion(),
+                review.getReviewer().getId(),
+                review.getThesis().getId(),
+                review.isPassed());
+        return reviewDTO;
+    }
 }
 

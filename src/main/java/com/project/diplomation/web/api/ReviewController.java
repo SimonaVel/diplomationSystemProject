@@ -3,15 +3,22 @@ package com.project.diplomation.web.api;
 import com.project.diplomation.data.models.dto.CreateReviewDTO;
 import com.project.diplomation.data.models.dto.ReviewDTO;
 import com.project.diplomation.data.models.entities.Review;
+import com.project.diplomation.data.models.entities.Thesis;
+import com.project.diplomation.data.models.entities.UniversityTutor;
+import com.project.diplomation.data.repositories.ThesisRepo;
+import com.project.diplomation.data.repositories.UniversityTutorRepo;
 import com.project.diplomation.exception.ReviewNotFoundException;
 import com.project.diplomation.service.ReviewService;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,10 +26,24 @@ import java.util.List;
 public class ReviewController {
     private final ReviewService reviewService;
     private final MapperUtil mapperUtil;
+    private final ThesisRepo thesisRepo;
+    private final UniversityTutorRepo universityTutorRepo;
 
     @PostMapping("/create")
     public CreateReviewDTO createReview(@RequestBody CreateReviewDTO reviewDTO) {
-        return this.reviewService.createReviewDTO(mapperUtil.getModelMapper().map(reviewDTO, Review.class));
+        Thesis thesis = thesisRepo.getById(reviewDTO.getThesisId());
+        UniversityTutor reviewer = universityTutorRepo.getById(reviewDTO.getReviewerId());
+//        save all data in review entity
+        Review review = new Review();
+        review.setReviewer(reviewer);
+        review.setThesis(thesis);
+        review.setConclusion(reviewDTO.getConclusion());
+        review.setText(reviewDTO.getText());
+        review.setDateOfSubmission(reviewDTO.getDateOfSubmission() == null ? LocalDate.now() : reviewDTO.getDateOfSubmission());
+        review.setPassed(reviewDTO.isPassed());
+//        save entity in db
+        CreateReviewDTO savedReview = reviewService.createReviewDTO(review);
+        return savedReview;
     }
 
     @GetMapping("/{id}")
