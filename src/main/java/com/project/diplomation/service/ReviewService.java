@@ -65,6 +65,6 @@ public class ReviewService {
 
     public ReviewDTO getReviewByThesisId(long id) {
         return this.mapperUtil.getModelMapper()
-                .map(this.reviewRepo.findReviewByThesis_Id(id), ReviewDTO.class);
+                .map(this.reviewRepo.findReviewByThesisId(id), ReviewDTO.class);
     }
 }
