@@ -103,4 +103,29 @@ public class ReviewViewController {
                 .createReviewDTO(review);
         return "redirect:/reviews";
     }
+
+    @GetMapping("/edit/{id}")
+    public String showEditReviewForm(Model model, @PathVariable Long id) {
+        model.addAttribute("review", this.reviewService.getReview(id));
+
+        List<Long> reviewerIds = universityTutorService.getAllUniversityTutors()
+                .stream()
+                .map(UniversityTutorDTO::getId)
+                .toList();
+        model.addAttribute("reviewerIds", reviewerIds);
+
+        List<Long> thesisIds = thesisService.getAllTheses()
+                .stream()
+                .map(ThesisDTO::getId)
+                .toList();
+        model.addAttribute("thesisIds", thesisIds);
+
+        return "/reviews/edit";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateReview(@PathVariable long id, ReviewDTO reviewDTO) {
+        this.reviewService.updateReview(reviewDTO, id);
+        return "redirect:/reviews";
+    }
 }

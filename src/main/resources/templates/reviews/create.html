@@ -14,7 +14,7 @@
         <input class = "form-control" type="text" id="text" th:field="*{text}"/>
         <span class="text-danger" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Text Error</span>
 
-        <label for="conclusion">Content: </label>
+        <label for="conclusion">Conclusion: </label>
         <input class = "form-control" type="text" id="conclusion" th:field="*{conclusion}"/>
         <span class="text-danger" th:if="${#fields.hasErrors('conclusion')}" th:errors="*{conclusion}">Conclusion Error</span>
 

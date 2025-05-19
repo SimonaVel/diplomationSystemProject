@@ -8,7 +8,7 @@
     <div th:replace="~{fragments :: head}"></div>
     <div th:replace="~{fragments :: header-nav}"></div>
 
-    <h4>Edit application</h4>
+    <h4>Edit thesis</h4>
     <form th:action="@{'/theses/update/' + ${thesis.id}}" method="post">
         <input type="hidden" th:field="*{thesis.id}"/>
         <label for="title">Title:</label>
