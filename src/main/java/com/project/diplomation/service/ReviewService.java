@@ -2,6 +2,7 @@ package com.project.diplomation.service;
 
 import com.project.diplomation.data.models.dto.CreateReviewDTO;
 import com.project.diplomation.data.models.dto.ReviewDTO;
+import com.project.diplomation.data.models.dto.ThesisDTO;
 import com.project.diplomation.data.models.entities.Review;
 import com.project.diplomation.data.models.entities.Thesis;
 import com.project.diplomation.data.models.entities.UniversityTutor;
@@ -9,11 +10,13 @@ import com.project.diplomation.data.repositories.ReviewRepo;
 import com.project.diplomation.data.repositories.ThesisRepo;
 import com.project.diplomation.data.repositories.UniversityTutorRepo;
 import com.project.diplomation.exception.ReviewNotFoundException;
+import com.project.diplomation.exception.ThesisNotFoundException;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -62,5 +65,25 @@ public class ReviewService {
     public ReviewDTO getReviewByThesisId(long id) {
         return this.mapperUtil.getModelMapper()
                 .map(this.reviewRepo.findReviewByThesisId(id), ReviewDTO.class);
+    }
+
+    public ReviewDTO updateReview(ReviewDTO reviewDTO, long id){
+        return this.reviewRepo.findById(id)
+                .map(review -> {
+                    review.setText(reviewDTO.getText() == null ? review.getText() : reviewDTO.getText());
+                    review.setDateOfSubmission(reviewDTO.getDateOfSubmission() == null ? review.getDateOfSubmission() : reviewDTO.getDateOfSubmission());
+                    review.setText(reviewDTO.getText() == null ? review.getText() : reviewDTO.getText());
+                    review.setConclusion(reviewDTO.getConclusion() == null ? review.getConclusion() : reviewDTO.getConclusion());
+                    review.setPassed(reviewDTO.isPassed());
+
+                    review.setReviewer(reviewDTO.getReviewerId() == 0 ? review.getReviewer() : universityTutorRepo.getReferenceById(reviewDTO.getReviewerId()));
+                    review.setThesis(reviewDTO.getThesisId() == 0 ? review.getThesis() : thesisRepo.getReferenceById(reviewDTO.getThesisId()));
+
+                    reviewRepo.save(review);
+
+                    ReviewDTO newReviewDTO = new ReviewDTO();
+                    return newReviewDTO.mapReviewToDTO(review);
+                })
+                .orElseThrow(() -> new ReviewNotFoundException("Review with id=" + id + " not found!"));
     }
 }

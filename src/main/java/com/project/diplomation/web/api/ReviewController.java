@@ -2,12 +2,14 @@ package com.project.diplomation.web.api;
 
 import com.project.diplomation.data.models.dto.CreateReviewDTO;
 import com.project.diplomation.data.models.dto.ReviewDTO;
+import com.project.diplomation.data.models.dto.ThesisDTO;
 import com.project.diplomation.data.models.entities.Review;
 import com.project.diplomation.data.models.entities.Thesis;
 import com.project.diplomation.data.models.entities.UniversityTutor;
 import com.project.diplomation.data.repositories.ThesisRepo;
 import com.project.diplomation.data.repositories.UniversityTutorRepo;
 import com.project.diplomation.exception.ReviewNotFoundException;
+import com.project.diplomation.exception.ThesisNotFoundException;
 import com.project.diplomation.service.ReviewService;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
@@ -73,5 +75,15 @@ public class ReviewController {
     @GetMapping("/by-thesis-id/{id}")
     public ReviewDTO getReviewByThesisId(@PathVariable long id) {
         return this.reviewService.getReviewByThesisId(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public ReviewDTO updateReview(@PathVariable long id, @RequestBody ReviewDTO reviewDTO) {
+        try {
+            return this.reviewService.updateReview(reviewDTO, id);
+        } catch (ReviewNotFoundException exception) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Thesis Not Found", exception);
+        }
     }
 }
