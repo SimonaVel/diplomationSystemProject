@@ -1,17 +1,26 @@
 package com.project.diplomation.web.view.controller;
 
 import com.project.diplomation.data.models.dto.*;
+import com.project.diplomation.data.models.entities.Application;
+import com.project.diplomation.data.models.entities.Review;
+import com.project.diplomation.data.models.entities.Thesis;
+import com.project.diplomation.data.models.entities.UniversityTutor;
+import com.project.diplomation.data.repositories.ThesisRepo;
+import com.project.diplomation.data.repositories.UniversityTutorRepo;
 import com.project.diplomation.service.ReviewService;
 import com.project.diplomation.service.ThesisService;
 import com.project.diplomation.service.UniversityTutorService;
 import com.project.diplomation.util.MapperUtil;
 import com.project.diplomation.web.view.model.ReviewViewModel;
+import jakarta.validation.Valid;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -22,7 +31,9 @@ public class ReviewViewController {
     private final MapperUtil mapperUtil;
     private final ReviewService reviewService;
     private final UniversityTutorService universityTutorService;
+    private final UniversityTutorRepo universityTutorRepo;
     private final ThesisService thesisService;
+    private final ThesisRepo thesisRepo;
 
     @GetMapping("/view/{id}")
     public String getReviewView(Model model, @PathVariable long id) {
@@ -65,5 +76,31 @@ public class ReviewViewController {
         model.addAttribute("thesisIds", thesisIds);
 
         return "/reviews/create";
+    }
+
+    @PostMapping("/save")
+    public String createReview(@Valid @ModelAttribute("review") CreateReviewDTO reviewDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/reviews/create";
+        }
+
+        // foreign keys
+        UniversityTutor reviewer = universityTutorRepo.getReferenceById(reviewDTO.getReviewerId());
+        Thesis thesis = thesisRepo.getReferenceById(reviewDTO.getThesisId());
+
+        //create the entity
+        Review review = new Review(
+                reviewDTO.getDateOfSubmission() == null ? LocalDate.now() : reviewDTO.getDateOfSubmission(),
+                reviewDTO.getText(),
+                reviewDTO.getConclusion(),
+                reviewer,
+                thesis,
+                reviewDTO.isPassed()
+        );
+
+        // save the entity in db
+        this.reviewService
+                .createReviewDTO(review);
+        return "redirect:/reviews";
     }
 }

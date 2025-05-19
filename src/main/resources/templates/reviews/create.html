@@ -18,11 +18,9 @@
         <input class = "form-control" type="text" id="conclusion" th:field="*{conclusion}"/>
         <span class="text-danger" th:if="${#fields.hasErrors('conclusion')}" th:errors="*{conclusion}">Conclusion Error</span>
 
-<!--        <label for="isPassed">Is it passed?: </label>-->
-<!--        <input class = "form-control" type="checkbox" id="isPassed" th:field="*{isPassed}"/>-->
-<!--        <span class="text-danger" th:if="${#fields.hasErrors('isPassed')}" th:errors="*{isPassed}">isPassed Error</span>-->
-
-
+        <label for="isPassed">Is it passed?: </label>
+        <input type="checkbox" id="isPassed" th:field="*{passed}"/>
+        <span class="text-danger" th:if="${#fields.hasErrors('passed')}" th:errors="*{passed}">isPassed Error</span>
 
         <label for="reviewerId">Reviewer Id: </label>
         <select id="reviewerId" th:field="*{reviewerId}">
