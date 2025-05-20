@@ -26,8 +26,8 @@
                 <td><a class="btn btn-info" th:href="@{'/uniTutors/edit/'+${uniTutor.id}}">Edit</a></td>
                 <td><a class="btn btn-danger" th:href="@{'/uniTutors/delete/'+${uniTutor.id}}">Delete</a></td>
             </tr>
-            <footer th:replace="~{fragments :: footer}"></footer>
         </tbody>
     </table>
+<footer th:replace="~{fragments :: footer}"></footer>
 </body>
 </html>

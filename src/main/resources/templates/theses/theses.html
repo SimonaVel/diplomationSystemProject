@@ -39,8 +39,8 @@
                 <td><a class="btn btn-info" th:href="@{'/theses/edit/'+${thesis.id}}">Edit</a></td>
                 <td><a class="btn btn-danger" th:href="@{'/theses/delete/'+${thesis.id}}">Delete</a></td>
             </tr>
-            <footer th:replace="~{fragments :: footer}"></footer>
         </tbody>
     </table>
+<footer th:replace="~{fragments :: footer}"></footer>
 </body>
 </html>
