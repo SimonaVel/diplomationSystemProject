@@ -19,14 +19,13 @@ public class CreateReviewDTO {
     private boolean isPassed;
 
     public CreateReviewDTO mapReviewToCreateDTO (Review review) {
-        CreateReviewDTO reviewDTO = new CreateReviewDTO(
+        return new CreateReviewDTO(
                 review.getDateOfSubmission(),
                 review.getText(),
                 review.getConclusion(),
                 review.getReviewer().getId(),
                 review.getThesis().getId(),
                 review.isPassed());
-        return reviewDTO;
     }
 }
 

@@ -43,9 +43,8 @@ public class ReviewController {
         review.setText(reviewDTO.getText());
         review.setDateOfSubmission(reviewDTO.getDateOfSubmission() == null ? LocalDate.now() : reviewDTO.getDateOfSubmission());
         review.setPassed(reviewDTO.isPassed());
-//        save entity in db
-        CreateReviewDTO savedReview = reviewService.createReviewDTO(review);
-        return savedReview;
+
+        return reviewService.createReviewDTO(review);
     }
 
     @GetMapping("/{id}")

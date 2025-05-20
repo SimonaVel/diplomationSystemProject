@@ -1,7 +1,14 @@
 package com.project.diplomation.web.api;
 
+import com.project.diplomation.data.models.dto.CreateDefenseDTO;
 import com.project.diplomation.data.models.dto.DefenseDTO;
+import com.project.diplomation.data.models.dto.ReviewDTO;
+import com.project.diplomation.data.models.entities.Defense;
+import com.project.diplomation.data.models.entities.Review;
+import com.project.diplomation.data.repositories.DefenseRepo;
+import com.project.diplomation.data.repositories.ReviewRepo;
 import com.project.diplomation.exception.DefenseNotFoundException;
+import com.project.diplomation.exception.ReviewNotFoundException;
 import com.project.diplomation.service.DefenseService;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +24,31 @@ import java.util.List;
 @RequestMapping("/defenses")
 public class DefenseController {
     private final DefenseService defenseService;
+    private final ReviewRepo reviewRepo;
     private final MapperUtil mapperUtil;
 
-//    @PostMapping("/create")
-//    public CreateDefenseDTO createDefense(@RequestBody CreateDefenseDTO defenseDTO) {
-//        return this.defenseService.createDefenseDTO(mapperUtil.getModelMapper().map(defenseDTO, Defense.class));
-//    }
+    @PostMapping("/create")
+    public CreateDefenseDTO createDefense(@RequestBody CreateDefenseDTO defenseDTO) {
+        Review review = reviewRepo.getReferenceById(defenseDTO.getReviewId());
+
+        Defense defense = new Defense(
+                defenseDTO.getDate(),
+                defenseDTO.getGrade(),
+                review
+        );
+
+        return defenseService.createDefenseDTO(defense);
+    }
+
+    @PutMapping("/update/{id}")
+    public DefenseDTO updateDefense(@PathVariable long id, @RequestBody DefenseDTO defenseDTO) {
+        try {
+            return this.defenseService.updateDefense(defenseDTO, id);
+        } catch (DefenseNotFoundException exception) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Defense Not Found", exception);
+        }
+    }
 
     @GetMapping("/{id}")
     public DefenseDTO getDefense(@PathVariable long id){

@@ -2,28 +2,44 @@ package com.project.diplomation.service;
 
 import com.project.diplomation.data.models.dto.CreateDefenseDTO;
 import com.project.diplomation.data.models.dto.DefenseDTO;
+import com.project.diplomation.data.models.dto.ReviewDTO;
 import com.project.diplomation.data.models.entities.Defense;
 import com.project.diplomation.data.repositories.DefenseRepo;
+import com.project.diplomation.data.repositories.ReviewRepo;
+import com.project.diplomation.exception.ReviewNotFoundException;
 import com.project.diplomation.util.MapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class DefenseService {
     private final DefenseRepo defenseRepo;
     private final MapperUtil mapperUtil;
-    private final ReviewService reviewService;
+    private final ReviewRepo reviewRepo;
 
-    public CreateDefenseDTO createReviewDTO(Defense defense) {
-        return mapperUtil.getModelMapper()
-                .map(this.defenseRepo
-                        .save(mapperUtil.getModelMapper()
-                                .map(defense, Defense.class)), CreateDefenseDTO.class);
+    public CreateDefenseDTO createDefenseDTO(Defense defense) {
+        defenseRepo.save(defense);
 
+        CreateDefenseDTO createDefenseDTO = new CreateDefenseDTO();
+        return createDefenseDTO.mapDefenseToCreateDTO(defense);
+    }
+
+    public DefenseDTO updateDefense(DefenseDTO defenseDTO, long id){
+        Defense defense = this.defenseRepo.findById(id);
+
+        defense.setGrade(defenseDTO.getGrade() == 0 ? defense.getGrade() : defenseDTO.getGrade());
+        defense.setDate(defenseDTO.getDate() == null ? defense.getDate() : defenseDTO.getDate());
+        defense.setReview(defenseDTO.getReviewId() == 0 ? defense.getReview() : reviewRepo.getReferenceById(defenseDTO.getReviewId()));
+
+        defenseRepo.save(defense);
+
+        DefenseDTO newDefenseDTO = new DefenseDTO();
+        return newDefenseDTO.mapDefenseToDTO(defense);
     }
 
     public DefenseDTO getDefense(long id) {
