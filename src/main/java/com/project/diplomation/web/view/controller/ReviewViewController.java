@@ -98,7 +98,6 @@ public class ReviewViewController {
                 reviewDTO.isPassed()
         );
 
-        // save the entity in db
         this.reviewService
                 .createReviewDTO(review);
         return "redirect:/reviews";

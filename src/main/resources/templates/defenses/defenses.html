@@ -13,7 +13,7 @@
             <tr>
                 <th scope="col">id</th>
                 <th scope="col">Date</th>
-<!--                <th scope="col">Reviewer Id</th>-->
+                <th scope="col">Reviewer Id</th>
                 <th scope="col">Grade</th>
 
                 <th scope="col"></th>
@@ -24,7 +24,7 @@
             <tr th:each="defense: ${defenses}">
                 <td th:text="${defense.id}"></td>
                 <td th:text="${defense.date}"></td>
-<!--                <td th:text="${defense.reviewId}"></td>-->
+                <td th:text="${defense.reviewId}"></td>
                 <td th:text="${defense.grade}"></td>
 
                 <td><a class="btn btn-info" th:href="@{'/defenses/edit/'+${defense.id}}">Edit</a></td>
