@@ -13,6 +13,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class StudentDTO {
     private long id;
     private String name;

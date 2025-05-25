@@ -80,18 +80,16 @@ public class StudentService {
         // 2) get their corresponding reviews, theses & applications
         List<ReviewDTO> reviews = defenses.stream()
                 .map(defense -> reviewService.getReview(defense.getReviewId()))
-                .collect(Collectors.toList());
+                .toList();
         List<ThesisDTO> theses = reviews.stream()
                 .map(review -> thesisService.getThesis(review.getThesisId()))
-                .collect(Collectors.toList());
+                .toList();
         List<ApplicationDTO> applications = theses.stream()
                 .map(thesis -> applicationService.getApplication(thesis.getApplicationId()))
-                .collect(Collectors.toList());
+                .toList();
         // 3) get the students from the applications
-        List<StudentDTO> students = applications.stream()
+        return applications.stream()
                 .map(application -> this.getStudent(application.getStudentId()))
                 .collect(Collectors.toList());
-
-        return students;
     }
 }
