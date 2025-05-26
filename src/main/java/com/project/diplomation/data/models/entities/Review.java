@@ -2,13 +2,10 @@ package com.project.diplomation.data.models.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
-
+@Builder
 @Entity
 @Getter
 @Setter

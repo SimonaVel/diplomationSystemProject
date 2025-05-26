@@ -11,6 +11,7 @@ import java.util.List;
  * Represents a university tutor entity.
  * Has an id, name and position type.
  */
+@Builder
 @Entity
 @Getter
 @Setter

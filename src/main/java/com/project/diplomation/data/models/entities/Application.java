@@ -4,11 +4,9 @@ package com.project.diplomation.data.models.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.diplomation.data.models.enums.ApplicationStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
+@Builder
 @Entity
 @Getter
 @Setter
