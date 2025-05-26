@@ -85,4 +85,9 @@ public class ReviewController {
                     HttpStatus.NOT_FOUND, "Thesis Not Found", exception);
         }
     }
+
+    @GetMapping("/count-failed-students")
+    public Long countUniqueStudentsWithFailedReviews() {
+        return reviewService.countUniqueStudentsWithFailedReviews();
+    }
 }

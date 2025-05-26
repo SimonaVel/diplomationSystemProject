@@ -14,6 +14,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @ToString
+@Table(name = "review")
 public class Review extends BaseEntity {
     @Column(name = "date_of_submission")
     private LocalDate dateOfSubmission;

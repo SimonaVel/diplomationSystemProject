@@ -86,4 +86,8 @@ public class ReviewService {
                 })
                 .orElseThrow(() -> new ReviewNotFoundException("Review with id=" + id + " not found!"));
     }
+
+    public Long countUniqueStudentsWithFailedReviews() {
+        return reviewRepo.countUniqueStudentsWithFailedReviews();
+    }
 }
