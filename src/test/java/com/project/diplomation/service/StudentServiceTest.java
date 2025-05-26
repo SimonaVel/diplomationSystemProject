@@ -6,9 +6,7 @@ import com.project.diplomation.data.models.entities.Student;
 import com.project.diplomation.data.repositories.StudentRepo;
 import com.project.diplomation.exception.StudentNotFoundException;
 import com.project.diplomation.util.MapperUtil;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -27,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class StudentServiceTest {
     @Mock
     private StudentRepo studentRepo;
@@ -50,8 +49,9 @@ class StudentServiceTest {
                 .build();
 
         studentDTO = StudentDTO.builder()
-                .name("John Doe")
-                .fNumber("123456")
+                .id(student.getId())
+                .name(student.getName())
+                .fNumber(student.getFNumber())
                 .build();
 
         createStudentDTO = CreateStudentDTO.builder()

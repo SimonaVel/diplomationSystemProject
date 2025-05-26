@@ -11,8 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/students")
@@ -75,10 +75,10 @@ public class StudentController {
         }
     }
 
-//    @GetMapping("/graduated-between/{start}/{end}")
-//    public List<StudentDTO> getStudentsGraduatedBetween(@PathVariable String start, @PathVariable String end) {
-//        LocalDate startDate = LocalDate.parse(start);
-//        LocalDate endDate = LocalDate.parse(end);
-//        return this.studentService.getGraduatedStudentsInPeriod(startDate, endDate);
-//    }
+    @GetMapping("/graduated-between/{start}/{end}")
+    public List<StudentDTO> getStudentsGraduatedBetween(@PathVariable String start, @PathVariable String end) {
+        LocalDate startDate = LocalDate.parse(start);
+        LocalDate endDate = LocalDate.parse(end);
+        return this.studentService.getGraduatedStudentsInPeriod(startDate, endDate);
+    }
 }
