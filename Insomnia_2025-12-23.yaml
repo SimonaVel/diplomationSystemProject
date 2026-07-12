@@ -1,0 +1,1128 @@
+type: collection.insomnia.rest/5.0
+name: DiplomationProjectJava
+meta:
+  id: wrk_432a0bfe47514b84982c21d687a154b7
+  created: 1734987628693
+  modified: 1734987628693
+collection:
+  - name: Students
+    meta:
+      id: fld_f51514e4ff9e45448fd3766d7d35d875
+      created: 1734988021658
+      modified: 1735401459804
+      sortKey: -1734988021658
+    children:
+      - url: localhost:8081/students/6
+        name: Get Student By Id
+        meta:
+          id: req_a7c07578c6df4a6ab3013cc0c23cf5bb
+          created: 1734987637292
+          modified: 1738001064589
+          isPrivate: false
+          sortKey: -1734988083434
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/students/by-name/Simon
+        name: Get Students By name
+        meta:
+          id: req_78b0f715654e4799b0927f336a98fa8c
+          created: 1734987965096
+          modified: 1737889846458
+          isPrivate: false
+          sortKey: -1734988083534
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/students/by-f_number/555555
+        name: Get Student By fNumber
+        meta:
+          id: req_696b09225fa44f49ada729a57c8fb7c5
+          created: 1735043990412
+          modified: 1747483019738
+          isPrivate: false
+          sortKey: -1735043990412
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        authentication:
+          type: oauth2
+          grantType: authorization_code
+          username: stanchev
+          password: stanchev
+          clientId: diplomation
+          clientSecret: cwAnyUVyYPgHi5QYWaiPmZbxl2FlxnCS
+          accessTokenUrl: http://127.0.0.1:8080/realms/diplomation-realm/protocol/openid-connect/token
+          redirectUrl: http://localhost:8081/login/oauth2/code/diplomation
+          credentialsInBody: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/students/create
+        name: Create student
+        meta:
+          id: req_7569552da5c240f2868996fb5b52ba29
+          created: 1735137302924
+          modified: 1737889856501
+          isPrivate: false
+          sortKey: -1735043990512
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "Yoci",
+            	"fnumber": "123467"
+            }
+        parameters:
+          - id: pair_a34570c3dd784b6d8cc5cb71f8bb8857
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/students/all
+        name: Get All Students
+        meta:
+          id: req_a1166ca799484ae7b0fa34522279c7e6
+          created: 1735138591814
+          modified: 1737889768121
+          isPrivate: false
+          sortKey: -1734896896358.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/students/delete/11
+        name: Delete student
+        meta:
+          id: req_4771a4eb20934712bd4a18d15a422eee
+          created: 1736007715145
+          modified: 1739262327915
+          isPrivate: false
+          sortKey: -1736007715145
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/students/update/11
+        name: Update student
+        meta:
+          id: req_ba1819d3c25040f2a0e76e0b1c7901e9
+          created: 1736008015259
+          modified: 1739262313481
+          isPrivate: false
+          sortKey: -1736008015259
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "Yocizavur",
+            	"fnumber": "765432"
+            }
+        parameters:
+          - id: pair_2ad6db81a7d24f679d7720c9e73f9775
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/students/graduated-between/2023-01-01/2023-07-22
+        name: Get graduated students between dates
+        meta:
+          id: req_ae22a93327414fafb95e1f7c1b1d6c07
+          created: 1739221586904
+          modified: 1739262211854
+          isPrivate: false
+          sortKey: -1739221586904
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: UniversityTutor
+    meta:
+      id: fld_4b1cf961a38f4e9e98fd4a96e91cf28f
+      created: 1735137274943
+      modified: 1735414349444
+      sortKey: -1735137274943
+    children:
+      - name: security
+        meta:
+          id: fld_19569f3caaca472faab7385389944f74
+          created: 1736677918439
+          modified: 1739260621132
+          sortKey: -1739260477311
+        children:
+          - url: http://127.0.0.1:8080/realms/diplomation-realm/protocol/openid-connect/token
+            name: OpenID connect token
+            meta:
+              id: req_4a56a55af57c48fa96ded06c074529db
+              created: 1736677938212
+              modified: 1737983461459
+              isPrivate: false
+              sortKey: -1736677938212
+            method: GET
+            body:
+              mimeType: multipart/form-data
+            headers:
+              - name: Content-Type
+                value: multipart/form-data
+              - name: User-Agent
+                value: insomnia/10.3.0
+            authentication:
+              type: oauth2
+              grantType: authorization_code
+              accessTokenUrl: http://127.0.0.1:8080/realms/diplomation-realm/protocol/openid-connect/token
+              clientId: diplomation
+              clientSecret: cwAnyUVyYPgHi5QYWaiPmZbxl2FlxnCS
+              redirectUrl: http://localhost:8081/login/oauth2/code/diplomation
+              authorizationUrl: http://127.0.0.1:8080/realms/diplomation-realm/protocol/openid-connect/auth
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - url: localhost:8081/uni-tutors/by-name/Kotkova
+        name: Get UniTutors By name
+        meta:
+          id: req_de81b379e21f4685a14ca33baee4951b
+          created: 1735137333132
+          modified: 1739260381388
+          isPrivate: false
+          sortKey: -1735137305956
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/uni-tutors/by-position_type/LEAD_ASSISTANT
+        name: Get UniTutors By position type
+        meta:
+          id: req_f57bd93357d0449c9ce36a155bc20962
+          created: 1735137357043
+          modified: 1737892867175
+          isPrivate: false
+          sortKey: -1735137306056
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/uni-tutors/all
+        name: Get All UniTutors
+        meta:
+          id: req_c5b45838de5e43b2a6132050e6e4d19e
+          created: 1735139078161
+          modified: 1737892843800
+          isPrivate: false
+          sortKey: -1735137306156
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/uni-tutors/create
+        name: Create uniTutor
+        meta:
+          id: req_5766a34e59b744809a51e05d582f4344
+          created: 1735574938460
+          modified: 1737892891096
+          isPrivate: false
+          sortKey: -1735137306256
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "IDK2",
+            	"positionType": "PROFESSOR"
+            }
+        parameters:
+          - id: pair_a34570c3dd784b6d8cc5cb71f8bb8857
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/uni-tutors/1
+        name: Get UniTutor By Id
+        meta:
+          id: req_b71a3918cbbb463aac02e8233fa3fd2c
+          created: 1735574960325
+          modified: 1737983529138
+          isPrivate: false
+          sortKey: -1735137306306
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/uni-tutors/delete/8
+        name: Delete UniTutor
+        meta:
+          id: req_bd5cde3165cb4970a616d7b1e162176a
+          created: 1737892919503
+          modified: 1739261808243
+          isPrivate: false
+          sortKey: -1737892919503
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/uni-tutors/update/8
+        name: Update UniTutor
+        meta:
+          id: req_2d99d50f4e04415580105c5f4af01ab5
+          created: 1739260477211
+          modified: 1739261624866
+          isPrivate: false
+          sortKey: -1739260477211
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "IDK5"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Application
+    meta:
+      id: fld_278dad25d9a340e7b70e04440476ceb0
+      created: 1738268883083
+      modified: 1738268883083
+      sortKey: -1738268883083
+    children:
+      - url: localhost:8081/applications/create
+        name: Create application
+        meta:
+          id: req_ef92c34e0b574934a9004901dc04be4a
+          created: 1738268888569
+          modified: 1738269834789
+          isPrivate: false
+          sortKey: -1738268888569
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "topic": "Why cats can save humanity",
+                "aims": "Creating world peace",
+                "problems": "Wars",
+                "technologies": "Cats",
+                "status": "REJECTED",
+                "studentId": 2,
+                "tutorId": 2
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/applications/delete/5
+        name: Delete application
+        meta:
+          id: req_285ef5735066429cb00cde6a77b5e31e
+          created: 1738270431858
+          modified: 1738489560230
+          isPrivate: false
+          sortKey: -1738270431858
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/applications/update/6
+        name: Update application
+        meta:
+          id: req_feb3b5fbc16c4c72b1aed3d315320ae2
+          created: 1738489524012
+          modified: 1738491571053
+          isPrivate: false
+          sortKey: -1738489524013
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"studentId": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/applications/all
+        name: Get all applications
+        meta:
+          id: req_073e737150d94a1d8ba4852fe8a5320d
+          created: 1738489581123
+          modified: 1738489610411
+          isPrivate: false
+          sortKey: -1738489581123
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/applications/by-status/ACCEPTED
+        name: Get applications by status
+        meta:
+          id: req_76607b03385d4424b1ac47e3139bc55d
+          created: 1739106822561
+          modified: 1739106954213
+          isPrivate: false
+          sortKey: -1739106822561
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/applications/by-tutor/4
+        name: Get applications by tutor
+        meta:
+          id: req_24f373a01dcb4d43aa72a6601a542fc2
+          created: 1739128638636
+          modified: 1739128649627
+          isPrivate: false
+          sortKey: -1738988298988
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/applications/by-tutor-and-status/4/ACCEPTED
+        name: Get applications by tutor and status
+        meta:
+          id: req_c893aafbf0204abcaa37b731dce1bfb0
+          created: 1739129677662
+          modified: 1739213184495
+          isPrivate: false
+          sortKey: -1739047560774.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Thesis
+    meta:
+      id: fld_415b3ca3a8ad4fecb96d7df7be93d857
+      created: 1738518653727
+      modified: 1747487439624
+      sortKey: -1738518653727
+    children:
+      - url: localhost:8081/theses/all
+        name: Get all theses
+        meta:
+          id: req_77d47c4540914a02a14522bd694c85ba
+          created: 1738518676993
+          modified: 1738691792013
+          isPrivate: false
+          sortKey: -1738518684130
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/theses/update/6
+        name: Update thesis
+        meta:
+          id: req_a5186e3ea13d48749e6c1ad8eceadfd9
+          created: 1738518716132
+          modified: 1739262510463
+          isPrivate: false
+          sortKey: -1738518716132
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"applicationId": 5
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/theses/create
+        name: Create thesis
+        meta:
+          id: req_e8a66517d16d4ba79f6a1c2d4263c093
+          created: 1738518774092
+          modified: 1739262437650
+          isPrivate: false
+          sortKey: -1738518716232
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+            	"title": "Solving World hunger with pills 2",
+            	"text": "Though ozempic created a bunch of problems, it suppressed the hunger of the high class. Let us make it available to yhe public and see what happens! I bet it will solve world hunger. 2",
+            	"dateOfSubmission": "2025-01-01",
+            	"applicationId": 4
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/theses/1
+        name: Get thesis by Id
+        meta:
+          id: req_905960ac5b594e34a6385ef11b5e893b
+          created: 1738518797457
+          modified: 1738518819187
+          isPrivate: false
+          sortKey: -1738518797457
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/theses/delete/4
+        name: Delete thesis
+        meta:
+          id: req_6d075453f1f945cf8d1ca1fae805d4a1
+          created: 1738519130260
+          modified: 1739111207013
+          isPrivate: false
+          sortKey: -1738519130260
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/theses/by-title/hunger
+        name: Get thesis by title containing
+        meta:
+          id: req_65673d3f5ecc4d85a6908292a0677019
+          created: 1739111121935
+          modified: 1739111155547
+          isPrivate: false
+          sortKey: -1738518700131
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Review
+    meta:
+      id: fld_8dff9b46a10940429adba9beca043a15
+      created: 1738691709378
+      modified: 1738691838215
+      sortKey: -1738691709378
+    children:
+      - url: localhost:8081/reviews/all
+        name: Get all reviews
+        meta:
+          id: req_1495b8790ba9444f8fda0b50ce674a3b
+          created: 1738691800382
+          modified: 1738691834417
+          isPrivate: false
+          sortKey: -1738691800382
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/reviews/1
+        name: Get review
+        meta:
+          id: req_c549b66c49ac4e468e25d4cc27b7e00a
+          created: 1738691850055
+          modified: 1738691857139
+          isPrivate: false
+          sortKey: -1738605465321
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/reviews/by-thesis-id/2
+        name: "Get reviews by thesis id "
+        meta:
+          id: req_b1dcab8948424624a75675ab0a5e742e
+          created: 1739216786659
+          modified: 1747590616292
+          isPrivate: false
+          sortKey: -1738648632851.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/reviews/create
+        name: Create review
+        meta:
+          id: req_1b3a27bfb31f49babd9d6ff709d94671
+          created: 1747481685853
+          modified: 1747589763552
+          isPrivate: false
+          sortKey: -1738691800482
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"dateOfSubmission": "2024-01-02",
+            	"text": "yes",
+            	"conclusion": "yuh",
+            	"reviewerId": 2,
+            	"thesisId": 10,
+            	"passed": true
+            }
+        parameters:
+          - id: pair_a34570c3dd784b6d8cc5cb71f8bb8857
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/theses/delete/15
+        name: Delete review
+        meta:
+          id: req_b55fc9dfaea2471a9927debbf8eaf8bc
+          created: 1747487450576
+          modified: 1747590190399
+          isPrivate: false
+          sortKey: -1738605465221
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/reviews/update/4
+        name: Update review
+        meta:
+          id: req_167becf32e2248e499ef323cf41bfc7c
+          created: 1747682641447
+          modified: 1747682740607
+          isPrivate: false
+          sortKey: -1738605465271
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"text": "no"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/reviews/count-failed-students
+        name: Count failed students
+        meta:
+          id: req_3ec8aa7017544e9da0517d7c956ab722
+          created: 1748275850702
+          modified: 1748275870682
+          isPrivate: false
+          sortKey: -1738605465296
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Defense
+    meta:
+      id: fld_59157a6719e4461c9e965cbd5d9dc1d6
+      created: 1738869004378
+      modified: 1738869811318
+      sortKey: -1738869004378
+    children:
+      - url: localhost:8081/defenses/1
+        name: Get defense
+        meta:
+          id: req_b1c2e4484caa4282b610188c83e9bd42
+          created: 1738869771880
+          modified: 1738869832974
+          isPrivate: false
+          sortKey: -1738869775315
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/defenses/all
+        name: Get all defenses
+        meta:
+          id: req_76400962fd96400ba6791c3cb4dbfae9
+          created: 1738869805449
+          modified: 1738869847055
+          isPrivate: false
+          sortKey: -1738869775415
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/defenses/grade/3/6
+        name: Get defenses with grade between 3 and 6
+        meta:
+          id: req_d77e84024fb84d22bb638d42f0a33a75
+          created: 1739214931425
+          modified: 1739219233491
+          isPrivate: false
+          sortKey: -1739214931425
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/defenses/by-review-id/1
+        name: Get defense by review id
+        meta:
+          id: req_fa09d7b471bf48f18f78d06f4e2b7d85
+          created: 1739216389582
+          modified: 1747484678327
+          isPrivate: false
+          sortKey: -1739216389582
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/defenses/by-date-between/2025-01-01/2025-06-06
+        name: Get defenses by date between
+        meta:
+          id: req_8bf6effc713d4b96b35c8c32d7377b42
+          created: 1739217756093
+          modified: 1739219256218
+          isPrivate: false
+          sortKey: -1739217756093
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/defenses/by-date-and-grade-between/2025-05-15/2025-06-06/4/6
+        name: Get defenses by date between and grade between
+        meta:
+          id: req_e35c14e9ff4142abb16fee7e02bd36d6
+          created: 1739221000972
+          modified: 1739221141701
+          isPrivate: false
+          sortKey: -1739221000972
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/defenses/delete/3
+        name: Delete defense
+        meta:
+          id: req_64d88788d18440d98f62d77d4ae617b6
+          created: 1747769695124
+          modified: 1747769712618
+          isPrivate: false
+          sortKey: -1739221001072
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/defenses/create
+        name: Create defense
+        meta:
+          id: req_decbd9dc338f4372b7818c16bba92cba
+          created: 1747769817426
+          modified: 1747769880970
+          isPrivate: false
+          sortKey: -1739221001172
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"date": "2025-05-01",
+            	"grade": 5,
+            	"reviewId": 4
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/defenses/update/4
+        name: Update defense
+        meta:
+          id: req_ea5ff7f34c3b48eaade4d75aff06c180
+          created: 1747771177794
+          modified: 1747771244293
+          isPrivate: false
+          sortKey: -1739221001022
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"grade": 3
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_059decd76699a84fb231cbb08a129189ccdafd6f
+    created: 1734987628707
+    modified: 1738004646530
+  cookies:
+    - key: JSESSIONID
+      value: 4B4893338C42E76C224DE0EBAFFB9286
+      domain: localhost
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-01-27T12:54:47.041Z
+      lastAccessed: 2025-01-27T19:04:06.530Z
+      id: 2fa3eb1a-0d25-4d13-b20c-1f425e25d785
+environments:
+  name: Base Environment
+  meta:
+    id: env_059decd76699a84fb231cbb08a129189ccdafd6f
+    created: 1734987628706
+    modified: 1734987628706
+    isPrivate: false
